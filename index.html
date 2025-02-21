@@ -720,7 +720,7 @@
 
           const channelName = this.dataset.channelId;
           const channelData = channels.find((c) => c.name === channelName);
-
+					
           if (channelData.type === "youtube") {
             const channelId = channelData.channelUrl; // Directly use the Channel ID
             if (channelId) {
@@ -826,7 +826,7 @@
 
     // Load Generic Stream
     function loadStream(url) {
-        
+      showBanner();
       const playerContainer = document.getElementById("player");
       playerContainer.innerHTML = `
         <iframe width="100%" height="105%"
