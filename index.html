@@ -192,7 +192,7 @@
   z-index: 1000;
   transition: all 0.5s ease-in-out;
   max-width: 600px;
-  width: 90%;
+  width: 60%;
   cursor: pointer;
   visibility: hidden;
   padding: 0; /* Remove padding to avoid spacing issues */
@@ -236,6 +236,15 @@
 
 #closeBannerBtn:hover {
   background: rgba(0, 0, 0, 0.9);
+}
+@media (max-width: 768px) {
+  #donationBanner img {
+    width: 70%; /* Larger image on mobile */
+  }
+
+  #closeBannerBtn {
+    right: calc(15% - 10px); /* Adjust for 70% width */
+  }
 }
   </style>
 </head>
