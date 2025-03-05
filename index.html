@@ -241,11 +241,13 @@
 }
 @media (max-width: 768px) {
   #donationBanner img {
-    width: 82%; /* Larger image on mobile */
+    width: 75%; /* Larger image on mobile */
+    height: auto; /* Maintain aspect ratio */
   }
 
   #closeBannerBtn {
-    right: calc(15% - 10px); /* Adjust for 70% width */
+    top: 0px; /* Distance from the top of the image */
+    right: 100px; /* Distance from the right of the image */
   }
 }
   </style>
