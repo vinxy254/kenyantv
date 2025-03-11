@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HLS Livestream Demo</title>
+</head>
+<body>
+    <h1>HTTP Live Stream (HLS) Demo</h1>
+    
+    <!-- Video element with controls -->
+    <video id="video" controls width="800" autoplay></video>
+
+    <!-- Include hls.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+    <script>
+        // Replace with your HLS stream URL
+        const hlsUrl = 'http://185.236.229.62:9981/play/a068';
+
+        const video = document.getElementById('video');
+
+        // Check browser support
+        if (Hls.isSupported()) {
+            // Use hls.js for non-Safari browsers
+            const hls = new Hls();
+            hls.loadSource(hlsUrl);
+            hls.attachMedia(video);
+            
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                console.log('Stream loaded!');
+                video.play();
+            });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            // Native Safari support
+            video.src = hlsUrl;
+            video.addEventListener('loadedmetadata', () => {
+                video.play();
+            });
+        } else {
+            alert('Error: Browser does not support HLS streaming.');
+        }
+    </script>
+
+    <!-- Optional: Add basic styling -->
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px;
+        }
+        video {
+            background: #000;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+    </style>
+</body>
+</html>

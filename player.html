@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyStream Kenya</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary-bg: #1a1a24;
+      --accent: #ff6b6b;
+      --glass: rgba(255, 255, 255, 0.08);
+      --gradient: linear-gradient(145deg, #ff6b6b 0%, #ff5252 100%);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: var(--primary-bg);
+      color: white;
+      font-family: 'Segoe UI', system-ui;
+      height: 100vh;
+      overflow: hidden;
+    }
+    /* Glossy Video Container */
+    .video-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    #player {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    /* Channel Sidebar with Glassmorphism */
+    .channel-sidebar {
+      position: fixed;
+      left: -300px;
+      top: 0;
+      height: 100vh;
+      width: 300px;
+      background: rgba(31, 31, 42, 0.5); /* Increased transparency */
+      backdrop-filter: blur(10px); /* Increased blur effect */
+      transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 3;
+      padding: 25px;
+      overflow-y: auto;
+      border-radius: 0 30px 30px 0;
+      box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
+    }
+    .sidebar-trigger {
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 100px;
+      z-index: 2;
+      cursor: pointer;
+      background: var(--gradient);
+      border-radius: 0 15px 15px 0;
+      transition: all 0.3s ease;
+    }
+    .sidebar-trigger:hover + .channel-sidebar,
+    .channel-sidebar:hover {
+      left: 0;
+    }
+
+    /* Channel Cards */
+    .channel-card {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(255, 255, 255, 0.3); /* Increased transparency */
+      backdrop-filter: blur(5px); /* Added blur effect */
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .channel-card:hover {
+      transform: translateX(10px);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1)); /* Adjusted transparency */
+    }
+    
+    .channel-card.active {
+      border-left: 4px solid var(--accent);
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    .channel-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    /* Bottom Panel Styles */
+    .bottom-trigger {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 20px; /* Reduced height */
+      z-index: 1; /* Lower than panel */
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .bottom-panel {
+      position: fixed;
+      bottom: -150px; /* Increased negative value */
+      left: 0;
+      width: 100%;
+      background: rgba(19, 19, 31, 0.9);
+      backdrop-filter: blur(15px);
+      padding: 20px 40px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 2; /* Higher than trigger */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 30px 30px 0 0;
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .bottom-trigger:hover + .bottom-panel,
+    .bottom-panel:hover {
+      bottom: 0; /* Show panel on hover */
+    }
+
+    .now-playing {
+      border-left: 3px solid var(--accent);
+      padding-left: 15px;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    /* Glossy Buttons */
+    .control-btn {
+      background: var(--gradient);
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    }
+    .control-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 4px;
+    }
+    /* Loading Animation */
+    #loading {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 1.5rem;
+      z-index: 9999;
+      background: var(--glass);
+      padding: 20px 40px;
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+    }
+    /* Ad Container Styles */
+    #adContainer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    #adContent {
+        position: relative;
+        max-width: 600px;
+        width: 100%;
+    }
+
+    #closeAdBtn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+    /* Donation Banner Fixes */
+    #donationBanner {
+      position: fixed;
+      bottom: -150px; /* Increased negative value */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000; /* Highest z-index */
+      transition: all 0.5s ease-in-out;
+      max-width: 600px;
+      width: 90%;
+      cursor: pointer;
+      visibility: hidden;
+    }
+
+    #donationBanner.active {
+      bottom: 20px;
+      visibility: visible;
+    }
+
+    #donationBanner img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    #closeBannerBtn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      line-height: 1;
+    }
+    #closeBannerBtn:hover {
+      background: rgba(0, 0, 0, 0.9);
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Element -->
+  <div id="loading" style="display: none;">Initializing Player...</div>
+
+  <div class="video-container">
+    <div id="player"></div>
+  </div>
+
+  <div class="sidebar-trigger"></div>
+  <aside class="channel-sidebar" id="channelList">
+    <!-- Channels populated by JavaScript -->
+  </aside>
+
+  <div class="bottom-trigger"></div>
+
+  <div class="bottom-panel">
+    <div class="channel-info">
+      <h2 id="currentChannel">Citizen TV</h2>
+      <div class="now-playing">
+        <p id="currentProgram">Live Broadcast</p>
+        <small id="Rating">Rating: N/A</small>
+      </div>
+    </div>
+    <button class="control-btn" onclick="toggleGuide()">
+      <i class="fas fa-tv"></i> TV Guide
+    </button>
+  </div>
+
+  <div id="donationBanner" onclick="donateNow()">
+    <img src="https://tv.songatechnologies.co.ke/donation.jpg" 
+         alt="Support our service - Donate Now">
+    <button id="closeBannerBtn">&times;</button>
+  </div>
+
+  <script>
+    // Banner Logic
+    let bannerTimer;
+    let bannerVisible = false;
+
+    // Channel Configuration
+    const channels = [
+	{
+	        name: "NTV Kenya",
+	        type: "youtube",
+	        channelUrl: "UCqBJ47FjJcl61fmSbcadAVg",
+	        logo: "https://static.ntvkenya.co.ke/assets/brand-logos/ntv-logo-white.png",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+	},
+       {
+	        name: "Citizen TV",
+	        type: "youtube",
+	        channelUrl: "UChBQgieUidXV1CmDxSdRm3g",
+	        logo:
+	          "https://static.wikia.nocookie.net/logopedia/images/7/70/Citizen_TV_%28Kenya%29_logo.png",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+      },
+      {
+	        name: "KTN Home",
+	        type: "stream",
+	        streamUrl: "https://iframe.dacast.com/live/4cce2c4f-8e53-6687-c787-7fd4a00a24ad/26ad816e-bb72-9988-625c-5e6243e4ded1?&autoplay=1",
+	        logo:
+	          "https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/KTN.2014-present_logo.jpg/250px-KTN.2014-present_logo.jpg",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+      },
+      {
+	        name: "K24 TV",
+	        type: "m3u8",
+	        streamUrl: "https://cdn.tuko.co.ke/images/720/0fgjhs6haghj8pabe.webp",
+	        logo: "https://appsgeyser.io/geticon.php?widget=K24%20TV%20Kenyas%20TV%20Online%20Stream_15036399&width=512",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+      },
+      {
+	        name: "KBC Channel 1",
+	        type: "youtube",
+	        channelUrl: "UCypNjM5hP1qcUqQZe57jNfg",
+	        logo: "https://livetvcentral.com/imgs/tvs/3304.jpg",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+      },
+      {
+	        name: "Lookuptv",
+	        type: "stream",
+	        streamUrl: "//ok.ru/videoembed/2352940981899",
+	        logo: "https://lookuptv.co.ke/static/images/logos/LOOK-UP-LOGO-PNG.png/",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+      },
+      {
+	        name: "Capuchin TV",
+	        type: "m3u8",
+	        streamUrl: "https://goliveafrica.media:9998/live/64227f58b8413/index.m3u8",
+	        logo: "https://capuchintv.co.ke/wp-content/uploads/2017/11/Capuchin-logo.png",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+      },
+      {
+	        name: "Inooro TV",
+	        type: "stream",
+	        streamUrl:
+	          "https://player.castr.com/live_cd93fa8063f411ecb28b5d4f40b51a46?autoplay=1&enablejsapi=1&rel=0&showinfo=0&mute=0",
+	        logo:
+	          "https://keonline.eu-central-1.linodeobjects.com/uploads/logo/nf0fohGccEB5orpXeraqamkEo3Q8sNPrYWtGvIaW.jpg",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+      },
+      {
+	        name: "Ramogi TV",
+	        type: "stream",
+	        streamUrl:
+	          "https://player.castr.com/live_9b761ff063f511eca12909b8ef1524b4?autoplay=1&mute=0&enablejsapi=1&rel=0&showinfo=0&mute=0",
+	        logo: "https://kenyalivetv.co.ke/uploads/tv/3_icon_ramogitv.webp",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+      },
+      {
+	        name: "KASS TV",
+	        type: "stream",
+	        streamUrl: "https://goliveafrica.media/live/1/kasstv&embed=1",
+	        logo:
+	          "https://lh3.googleusercontent.com/3XKtcKiWjlpm6BcBqN50QIx2yqvSRh4ppKmonV2c-kHmjT-6ThHlXc5Nn_UjtNOZXn-W=s200",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+      },
+      {
+	        name: "Meru TV",
+	        type: "m3u8",
+	        streamUrl: "https://goliveafrica.media:9998/live/628e5c1991061/index.m3u8",
+	        logo: "https://tv.songatechnologies.co.ke/DeltalinkTV.png",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+      },
+      {
+	        name: "Lolwe TV",
+	        type: "stream",
+	        streamUrl: "https://goliveafrica.media/live/1/LOLWETV?embed=1&mute=0",
+	        logo:
+	          "https://lolwetv.co.ke/wp-content/uploads/2023/10/MASTER-LOGO-OCT-EDIT-1.png",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+      },
+	{
+	        name: "Romanza Africa",
+	        type: "m3u8",
+	        streamUrl: "https://origin3.afxp.telemedia.co.za/PremiumFree/romanza/playlist.m3u8",
+	        logo: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Romanza%2B%C3%81frica_logo.jpg",
+	        nowPlaying: "Soap Operas",
+	        Rating: "PG"
+      },
+	{
+	        name: "CGTN+",
+	        type: "m3u8",
+	        streamUrl: "https://amg00405-rakutentv-cgtndocumentary-rakuten-0ql8j.amagi.tv/master480p.m3u8",
+	        logo: "https://upload.wikimedia.org/wikipedia/commons/2/25/CGTN.png",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+      },
+      // The following YouTube channels now use "channelUrl" for consistency.
+      {
+	        name: "Aljazeera",
+	        type: "youtube",
+	        channelUrl: "UCNye-wNBqNL5ZzHSJj3l8Bg",
+	        logo:
+	          "https://logos-world.net/wp-content/uploads/2023/04/Al-Jazeera-Logo-500x281.png",
+	        nowPlaying: "World News",
+	        Rating: "GE"
+      },
+      {
+	        name: "France 24",
+	        type: "youtube",
+	        channelUrl: "UCQfwfsi5VrQ8yKZ-UWmAEFg",
+	        logo:
+	          "https://upload.wikimedia.org/wikipedia/en/thumb/6/65/FRANCE_24_logo.svg/200px-FRANCE_24_logo.svg.png",
+	        nowPlaying: "World News",
+	        Rating: "GE"
+      },
+      {
+	        name: "Sky news",
+	        type: "youtube",
+	        channelUrl: "UCoMdktPbSTixAyNGwb-UYkQ",
+	        logo: "https://archive.org/download/sky-news-logo/sky-news-logo.jpg",
+	        nowPlaying: "World News",
+	        Rating: "GE"
+      },
+	{
+	        name: "Nickelodeon",
+	        type: "m3u8",
+	        streamUrl:"https://tvpass.org/live/Boomerang/sd",
+	        logo: "https://static.wikia.nocookie.net/logopedia/images/9/9c/Nickelodeon_1993_IV.svg",
+	        nowPlaying: "Movies",
+	        Rating: "PG"
+      },
+	{
+	        name: "Nickelodeon Jr",
+	        type: "m3u8",
+	        streamUrl:"https://fl5.moveonjoy.com/NICK_JR/index.m3u8",
+	        logo: "https://static.wikia.nocookie.net/logopedia/images/9/9c/Nickelodeon_1993_IV.svg",
+	        nowPlaying: "Movies",
+	        Rating: "PG"
+      },
+	{
+	        name: "Boomerang",
+	        type: "m3u8",
+	        streamUrl:"https://corsproxy.io/?url=https://dokko1new.koskoros.ru/dokko1/premium648/mono.m3u8",
+	        logo: "https://static.cdnlogo.com/logos/b/36/boomerang.svg",
+	        nowPlaying: "Movies",
+	        Rating: "PG"
+      },
+	{
+	        name: "Cartoon Network",
+	        type: "m3u8",
+	        streamUrl:"http://fl2.moveonjoy.com/CARTOON_NETWORK/index.m3u8",
+	        logo: "https://static.wikia.nocookie.net/logopedia/images/1/1f/Cartoon_Network_2004.svg",
+	        nowPlaying: "Movies",
+	        Rating: "PG"
+      },
+ 	{
+	        name: "KIDDO+",
+	        type: "m3u8",
+	        streamUrl:
+	          "https://streams2.sofast.tv/ptnr-stirr/genre-Education/lang-English/ctgr-Kids/title-KIDDO-ENG/sofastplayout/8258122f-b4c0-416b-a2db-8407847f0c3c_1000015692_HLS/master.m3u8",
+	        logo:
+	          "https://play-lh.googleusercontent.com/Z1LsqXqvYMagG76953Fauhz5uOQehL3V-xCGRDDahc94mZYB-rMwoosoTbpqs_bGqpH8=w240-h480",
+	        nowPlaying: "Kids",
+	        Rating: "GE"
+      },
+      {
+	        name: "Ninja Kids",
+	        type: "m3u8",
+	        streamUrl: "https://playworksdigital-ninjakidztv-1-us.xumo.wurl.tv/playlist.m3u8",
+	        logo:
+	          "https://images-na.ssl-images-amazon.com/images/I/71SJhmdG3sS._UL1200_.jpg",
+	        nowPlaying: "Kids",
+	        Rating: "GE"
+      },
+      {
+	        name: "Wild Earth",
+	        type: "m3u8",
+	        streamUrl:
+	          "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-60d4edddb2fdec002c141135.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=H1yabDkQmSszLCLhLxi8",
+	        logo: "https://images.plex.tv/photo?size=large-1920&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fcms%2Fproduction%2F458264fd-11c7-4568-9177-2373626ff752%2FWildEarth_artwork_Horizontal_logordx.jpg",
+	        nowPlaying: "Nature",
+	        Rating: "N/A"
+      },
+      {
+	        name: "NatGeo Wild",
+	        type: "m3u8",
+	        streamUrl:
+	          "https://kenyantv.live/natgeowild.m3u8",
+	        logo: "https://static.wikia.nocookie.net/logopedia/images/a/a6/Nat_Geo_Wild.svg",
+	        nowPlaying: "Nature",
+	        Rating: "N/A"
+      },
+
+      {
+	        name: "Weather Spy",
+	        type: "m3u8",
+	        streamUrl:
+	          "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-5f0ff266d71dcb00449ec030.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=H1yabDkQmSszLCLhLxi8",
+	        logo: "https://www.tubefilter.com/wp-content/uploads/2020/07/weather-spy-1920x1131.jpg",
+	        nowPlaying: "Weather",
+	        Rating: "N/A"
+      },
+      {
+	        name: "PFL TV",
+	        type: "m3u8",
+	        streamUrl:
+	          "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-643f0ecd76de2b4015ae6c01.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=H1yabDkQmSszLCLhLxi8",
+	        logo: "https://pflmma-prod.s3.us-east-1.amazonaws.com/assets/img/base/shield-logo-international.png",
+	        nowPlaying: "Boxing",
+	        Rating: "N/A"
+      },
+      {
+	        name: "Ring TV",
+	        type: "m3u8",
+	        streamUrl:
+	          "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-6765b16d1f7ab3b17306b128.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=H1yabDkQmSszLCLhLxi8",
+	        logo: "https://image.pitchbook.com/4XdIx2atj1jaCzesu1dhtqeMhFf1684924095053_200x200",
+	        nowPlaying: "Boxing",
+	        Rating: "N/A"
+      },
+      {
+	        name: "NBC Sport",
+	        type: "m3u8",
+	        streamUrl: "https://xumo-xumoent-vc-122-sjv70.fast.nbcuni.com/live/master.m3u8",
+	        logo:
+	          "https://nbcsports.brightspotcdn.com/dims4/default/ebd0202/2147483647/strip/true/crop/480x270+0+105/resize/1440x810!/format/webp/quality/90/?url=https%3A%2F%2Fnbc-sports-production-nbc-sports.s3.us-east-1.amazonaws.com%2Fbrightspot%2F13%2Faa%2F0b89575cc94ecfe7d938ede3099c%2Fnbcsn-a-reverse.jpg",
+	        nowPlaying: "Sports",
+	        Rating: "GE"
+      },
+
+      {
+	        name: "We love cars",
+	        type: "m3u8",
+	        streamUrl: "https://30a-tv.com/feeds/vidaa/cars.m3u8",
+	        logo: "https://www.usnews.com/object/image/00000191-d821-d8b8-adf7-f97944b10000/chevrolet-corvette-zr1-coupe-001.jpg?update-time=1725907944302&size=listiclePhoto",
+	        nowPlaying: "Motorsport",
+	        Rating: "N/A"
+      },
+      {
+	        name: "Motorsport TV",
+	        type: "m3u8",
+	        streamUrl:
+	          "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-6408c82eebb23ab878e8ddbb.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=bUxb-GHEyyZVSgV1R-TX",
+	        logo: "https://w7.pngwing.com/pngs/695/799/png-transparent-motors-tv-television-channel-motorsport-auto-racing-others.png",
+	        nowPlaying: "Motorsport",
+	        Rating: "N/A"
+      },
+      {
+	        name: "Garage TV",
+	        type: "m3u8",
+	        streamUrl: "https://stream1.sersat.com/hls/garagetv.m3u8",
+	        logo: "https://e7.pngegg.com/pngimages/926/901/png-clipart-el-garage-tv-television-publica-argentina-television-channel-logo-nick-jr-television-emblem.png",
+	        nowPlaying: "Motorsport",
+	        Rating: "N/A"
+      },
+      {
+	        name: "MAV TV",
+	        type: "m3u8",
+	        streamUrl:
+	          "https://d3h07n6l1exhds.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-0z2yyo4dxctc7/playlist.m3u8",
+	        logo: "https://assets.starsnationaltour.com/data/2024/02/MAVTV-Logo-300x170.webp",
+	        nowPlaying: "vehicles",
+	        Rating: "N/A"
+      },
+	{        
+	        name: "Cinemax",
+	        type: "m3u8",
+	        streamUrl:
+	          "http://fl2.moveonjoy.com/CINEMAX_EAST/index.m3u8",
+	        logo: "https://kenyalivetv.co.ke/uploads/tv/3_icon_ramogitv.webp",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+        },
+	{        
+	        name: "Movie Fe",
+	        type: "m3u8",
+	        streamUrl:
+	          "https://vcp.myplaytv.com/moviefe/moviefe/playlist.m3u8",
+	        logo: "https://static.vecteezy.com/system/resources/previews/012/657/549/non_2x/illustration-negative-film-reel-roll-tapes-for-movie-cinema-video-logo-vector.jpg",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+        },
+	{        
+	        name: "E!",
+	        type: "m3u8",
+	        streamUrl:
+	          "http://fl2.moveonjoy.com/E_ENTERTAINMENT_TELEVISION/index.m3u8",
+	        logo: "https://static.wikia.nocookie.net/logopedia/images/9/96/E!_1990.svg",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+        },
+	{        
+	        name: "MTV",
+	        type: "m3u8",
+	        streamUrl:
+	          "https://fl2.moveonjoy.com/MTV/index.m3u8",
+	        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/MTV_2021_%28brand_version%29.svg/220px-MTV_2021_%28brand_version%29.svg.png",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+        },
+	{        
+	        name: "MTV Live",
+	        type: "m3u8",
+	        streamUrl:
+	          "https://fl2.moveonjoy.com/MTV_LIVE/index.m3u8",
+	        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/MTV_2021_%28brand_version%29.svg/220px-MTV_2021_%28brand_version%29.svg.png",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+        },
+	{        
+	        name: "HBO",
+	        type: "stream",
+	        streamUrl:
+	          "http://fl2.moveonjoy.com/HBO/index.m3u8",
+	        logo: "https://i.pinimg.com/736x/8b/02/00/8b020050690f955ccb306cdf51324aea.jpg",
+	        nowPlaying: "Live Broadcast",
+	        Rating: "N/A"
+        },
+      {
+	        name: "Gravitas movies",
+	        type: "m3u8",
+	        streamUrl:
+	          "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-629141f6a0ed9c2b6ae63bb0.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=J1AqosoZYJQQd2akELPn",
+	        logo: "https://images.plex.tv/photo?size=large-1920&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fcms%2Fproduction%2F8890bb6e-82d6-4484-825c-369033ad664e%2FAlways_in_Season_Military_Logo_with_Background_1920x1080.jpg",
+	        nowPlaying: "Motorsport",
+	        Rating: "N/A"
+      },
+      {
+	        name: "TV Jamaica",
+	        type: "m3u8",
+	        streamUrl:
+	          "https://rjr-tvj-geo.akamaized.net/hls/live/2041530/TVJ_GEO/1/streamPlaylist.m3u8",
+	        logo: "https://radiojamaicanewsonline.com/assets/img/stories/display_pic/1470733964.png",
+	        nowPlaying: "Music",
+	        Rating: "PG"
+      },
+      {
+	        name: "Wu Tang collection",
+	        type: "m3u8",
+	        streamUrl:
+	          "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-5eea605474085f0040ddc770.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=J1AqosoZYJQQd2akELPn",
+	        logo: "https://images.plex.tv/photo?size=large-1920&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fimages%2Fott_channels%2Farts%2Fwu-tang-collection.jpg",
+	        nowPlaying: "Movies",
+	        Rating: "PG"
+      },
+      {
+	        name: "Hollywood classic",
+	        type: "m3u8",
+	        streamUrl:
+	          "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-66be944f8711311880995280.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=J1AqosoZYJQQd2akELPn",
+	        logo: "https://images.plex.tv/photo?size=large-1920&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fcms%2Fproduction%2F6d941e2d-2852-4b6e-83e0-99a10920ddb3%2FAction_Hollywood_Movies_artwork_horizontal_-_Angela_ChanRDX.jpg",
+	        nowPlaying: "Movies",
+	        Rating: "PG"
+      },
+      {
+	        name: "Gravitas movies",
+	        type: "m3u8",
+	        streamUrl:
+	          "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-629141f6a0ed9c2b6ae63bb0.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=J1AqosoZYJQQd2akELPn",
+	        logo: "https://images.plex.tv/photo?size=large-1920&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fcms%2Fproduction%2F8890bb6e-82d6-4484-825c-369033ad664e%2FAlways_in_Season_Military_Logo_with_Background_1920x1080.jpg",
+	        nowPlaying: "Movies",
+	        Rating: "PG"
+      },
+
+      // Add other channels here...
+    ];
+
+    let hls = null; // HLS.js instance
+
+    // Function to generate YouTube embed URL from channel ID
+    function getYouTubeEmbedUrl(channelId) {
+      return `https://www.youtube.com/embed/live_stream?channel=${channelId}&autoplay=1&rel=0&showinfo=0&enablejsapi=1`;
+    }
+
+    // Initialize channels list
+    function initChannels() {
+      const channelList = document.getElementById("channelList");
+      channels.forEach((channel) => {
+        const channelHTML = `
+          <div class="channel-card" data-channel-id="${channel.name}">
+            <img src="${channel.logo}" class="channel-logo">
+            <div class="channel-info">
+              <h3>${channel.name}</h3>
+              <p>${channel.nowPlaying}</p>
+            </div>
+          </div>
+        `;
+        channelList.innerHTML += channelHTML;
+      });
+
+      document.querySelectorAll(".channel-card").forEach((card) => {
+        card.addEventListener("click", async function () {
+          document.querySelectorAll(".channel-card").forEach((c) =>
+            c.classList.remove("active")
+          );
+          this.classList.add("active");
+
+          const channelName = this.dataset.channelId;
+          const channelData = channels.find((c) => c.name === channelName);
+	showBanner();			
+          if (channelData.type === "youtube") {
+            const channelId = channelData.channelUrl; // Directly use the Channel ID
+            if (channelId) {
+              loadYouTubeLive(channelId);
+            } else {
+              console.error("Invalid YouTube Channel ID");
+            }
+          } else if (channelData.type === "stream") {
+            loadStream(channelData.streamUrl);
+          } else if (channelData.type === "m3u8") {
+            loadHLS(channelData.streamUrl);
+          }
+
+          updateChannelInfo(channelData);
+        });
+      });
+    }
+
+    // Function to load YouTube live stream by channel ID
+    function loadYouTubeLive(channelId) {
+      const embedUrl = getYouTubeEmbedUrl(channelId);
+      const playerContainer = document.getElementById("player");
+      playerContainer.innerHTML = `
+        <iframe width="100%" height="100%"
+          src="${embedUrl}"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen>
+        </iframe>
+      `;
+    }
+
+    // Load HLS Stream
+    function loadHLS(url) {
+      const playerContainer = document.getElementById("player");
+      const loading = document.getElementById("loading");
+      if (!playerContainer || !loading) {
+        console.error("Critical elements missing!");
+        return;
+      }
+      playerContainer.innerHTML = "";
+      const video = document.createElement("video");
+      video.controls = true;
+      video.style.width = "100%";
+      video.style.height = "100%";
+      video.muted = false; // For autoplay
+
+      if (hls) hls.destroy();
+
+      if (Hls.isSupported()) {
+        hls = new Hls({
+          debug: true,
+          enableWorker: true,
+        });
+        hls.on(Hls.Events.ERROR, (event, data) => {
+          console.error("HLS Error:", data);
+          loading.textContent = "Error loading stream";
+        });
+        hls.loadSource(url);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          loading.style.display = "none";
+          hls.subtitleTrack = -1;
+          video.play().catch((error) => {
+            loading.textContent = "Click to play";
+            loading.style.display = "block";
+          });
+        });
+      } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        video.src = url;
+        video.addEventListener("loadedmetadata", () => {
+          loading.style.display = "none";
+          video.play();
+        });
+      }
+      playerContainer.appendChild(video);
+    }
+
+    // Update Channel Info in bottom panel
+    function updateChannelInfo(data) {
+      document.getElementById("currentChannel").textContent = data.name;
+      document.getElementById("currentProgram").textContent = data.nowPlaying;
+      document.getElementById("Rating").textContent = `Rating: ${data.Rating}`;
+    }
+
+    // Load Generic Stream
+    function loadStream(url) {
+      const playerContainer = document.getElementById("player");
+      playerContainer.innerHTML = `
+        <iframe width="100%" height="105%"
+          src="${url}" frameborder="0" mute="false"
+          allow="autoplay; encrypted-media"
+          allowfullscreen>
+        </iframe>
+      `;
+    }
+
+    // Dummy toggleGuide function (implement as needed)
+    function toggleGuide() {
+      console.log("TV Guide toggled");
+      // Implement guide toggle behavior here.
+    }
+
+    // Function to show the ad container
+    function showAd() {
+        let adContainer = document.getElementById("adsense-container");
+        
+        // Show the ad
+        adContainer.style.display = "block";
+    
+        // Reload AdSense ads to ensure they appear correctly
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    
+        // Hide the ad after 2 minutes (120,000 ms)
+        setTimeout(() => {
+            adContainer.style.display = "none";
+        }, 120000);
+    }
+
+    // Event listener for the close button
+    //document.getElementById('closeAdBtn').addEventListener('click', closeAd);
+
+    // Show the ad when a channel is clicked
+    document.querySelectorAll('.channel-card').forEach((card) => {
+      card.addEventListener('click', () => {
+        showAd();
+      });
+    });
+
+    // Show the ad when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      showAd();
+    });
+
+    // Update initial load logic
+    document.addEventListener("DOMContentLoaded", async function () {
+      initChannels();
+      const firstChannel = channels[1];
+      
+      if (firstChannel.type === "youtube") {
+        const channelId = firstChannel.channelUrl; // Directly use the Channel ID
+        if (channelId) loadYouTubeLive(channelId);
+      } else if (firstChannel.type === "m3u8") {
+        loadHLS(firstChannel.streamUrl);
+      } else if (firstChannel.type === "stream") {
+        loadStream(firstChannel.streamUrl);
+      }
+      
+      updateChannelInfo(firstChannel);
+      document.querySelector(".channel-card").classList.add("active");
+    });
+
+    // Donation Banner Functions
+    function showBanner() {
+      if(bannerVisible) return;
+      
+      const banner = document.getElementById('donationBanner');
+      banner.classList.add('active');
+      bannerVisible = true;
+      
+      setTimeout(() => {
+        closeBanner(); // Hide after 10 seconds
+      }, 10000);
+    }
+
+    function closeBanner() {
+      const banner = document.getElementById('donationBanner');
+      banner.classList.remove('active');
+      bannerVisible = false;
+    }
+
+    function startBannerTimer() {
+      bannerTimer = setTimeout(() => {
+        showBanner();
+        startBannerTimer(); // Restart timer after showing
+      }, 600000); // 10 minutes
+    }
+
+    function resetBannerTimer() {
+      clearTimeout(bannerTimer);
+      startBannerTimer();
+    }
+
+    // Call this when channel changes
+    function handleChannelChange() {
+      if(!bannerVisible) {
+        showBanner();
+      }
+      resetBannerTimer();
+    }
+
+    // Update your channel card event listeners
+    document.querySelectorAll('.channel-card').forEach((card) => {
+      card.addEventListener('click', handleChannelChange);
+    });
+
+    // Initialize timer when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      startBannerTimer();
+    });
+
+    function donateNow() {
+      window.open('https://your-donation-link.com', '_blank');
+    }
+
+    // Close banner when clicking the close button
+    document.getElementById('closeBannerBtn').addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent triggering donateNow() when closing
+      closeBanner();
+    });
+
+    // Redirect to donation page when clicking the banner
+    document.getElementById('donationBanner').addEventListener('click', donateNow);
+
+    // Start the initial banner timer
+    document.addEventListener('DOMContentLoaded', () => {
+      startBannerTimer();
+    });
+  </script>
+</body>
+</html>
