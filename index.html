@@ -913,13 +913,13 @@
     // Show the ad when a channel is clicked
     document.querySelectorAll('.channel-card').forEach((card) => {
       card.addEventListener('click', () => {
-        showAd();
+        //showAd();
       });
     });
 
     // Show the ad when the page loads
     document.addEventListener('DOMContentLoaded', () => {
-      showAd();
+      //showAd();
     });
 
     // Update initial load logic
@@ -946,7 +946,7 @@
       
       const banner = document.getElementById('donationBanner');
       banner.classList.add('active');
-      bannerVisible = true;
+      bannerVisible = false;
       
       setTimeout(() => {
         closeBanner(); // Hide after 10 seconds
@@ -974,7 +974,7 @@
     // Call this when channel changes
     function handleChannelChange() {
       if(!bannerVisible) {
-        showBanner();
+        //showBanner();
       }
       resetBannerTimer();
     }
