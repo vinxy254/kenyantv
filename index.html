@@ -303,7 +303,7 @@
   </div>
 
   <div id="donationBanner" onclick="donateNow()">
-    <img src="https://tv.songatechnologies.co.ke/donation.jpg" 
+    <img src="../mchange.jpg" 
          alt="Support our service - Donate Now">
     <button id="closeBannerBtn">&times;</button>
   </div>
@@ -942,15 +942,15 @@
 
     // Donation Banner Functions
     function showBanner() {
-      // if(bannerVisible) return;
+      if(bannerVisible) return;
       
-      // const banner = document.getElementById('donationBanner');
-      // banner.classList.add('active');
-      // bannerVisible = false;
+      const banner = document.getElementById('donationBanner');
+      banner.classList.add('active');
+      bannerVisible = false;
       
-      // setTimeout(() => {
-      //   closeBanner(); // Hide after 10 seconds
-      // }, 10000);
+      setTimeout(() => {
+        closeBanner(); // Hide after 10 seconds
+      }, 10000);
     }
 
     function closeBanner() {
@@ -960,23 +960,23 @@
     }
 
     function startBannerTimer() {
-      // bannerTimer = setTimeout(() => {
-      //   showBanner();
-      //   startBannerTimer(); // Restart timer after showing
-      // }, 600000); // 10 minutes
+      bannerTimer = setTimeout(() => {
+        showBanner();
+        startBannerTimer(); // Restart timer after showing
+      }, 600000); // 10 minutes
     }
 
     function resetBannerTimer() {
-      // clearTimeout(bannerTimer);
-      // startBannerTimer();
+      clearTimeout(bannerTimer);
+      startBannerTimer();
     }
 
     // Call this when channel changes
     function handleChannelChange() {
-      // if(!bannerVisible) {
-      //   //showBanner();
-      // }
-      // resetBannerTimer();
+      if(!bannerVisible) {
+        //showBanner();
+      }
+      resetBannerTimer();
     }
 
     // Update your channel card event listeners
@@ -986,13 +986,13 @@
 
     // Initialize timer when page loads
     document.addEventListener('DOMContentLoaded', () => {
-      //startBannerTimer();
+      startBannerTimer();
     });
 
     function donateNow() {
-      window.open('https://your-donation-link.com', '_blank');
+      window.open('https://www.mchanga.africa/fundraiser/112622', '_blank');
     }
-
+  
     // Close banner when clicking the close button
     document.getElementById('closeBannerBtn').addEventListener('click', (e) => {
       e.stopPropagation(); // Prevent triggering donateNow() when closing
@@ -1004,7 +1004,7 @@
 
     // Start the initial banner timer
     document.addEventListener('DOMContentLoaded', () => {
-      //startBannerTimer();
+      startBannerTimer();
     });
   </script>
 </body>
