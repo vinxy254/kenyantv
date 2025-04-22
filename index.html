@@ -314,7 +314,9 @@
     let bannerVisible = false;
 
     // Channel Configuration
+    
     const channels = [
+      //NEWS
       {
         name: "NTV Kenya",
         type: "youtube",
@@ -352,6 +354,43 @@
         infoPage: "k24_live.html"
       },
       {
+        name: "KBC Channel 1",
+        type: "youtube",
+        channelUrl: "UCypNjM5hP1qcUqQZe57jNfg",
+        logo: "https://livetvcentral.com/imgs/tvs/3304.jpg",
+        nowPlaying: "Live Broadcast",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Aljazeera",
+        type: "youtube",
+        channelUrl: "UCNye-wNBqNL5ZzHSJj3l8Bg",
+        logo: "https://logos-world.net/wp-content/uploads/2023/04/Al-Jazeera-Logo-500x281.png",
+        nowPlaying: "World News",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "CNN",
+        type: "m3u8",
+        streamUrl: "https://turnerlive.warnermediacdn.com/hls/live/586495/cnngo/cnn_slate/VIDEO_0_3564000.m3u8",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/CNN_International_logo.svg/960px-CNN_International_logo.svg.png",
+        nowPlaying: "World News",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "France 24",
+        type: "youtube",
+        channelUrl: "UCQfwfsi5VrQ8yKZ-UWmAEFg",
+        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/6/65/FRANCE_24_logo.svg/200px-FRANCE_24_logo.svg.png",
+        nowPlaying: "World News",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      
+      {
         name: "Ebru Africa",
         type: "stream",
         streamUrl: "https://embed.twitch.tv?autoplay=true&channel=ebrutvkenya&height=100%25&layout=video&parent=kenyantv.live&width=100%25&embed-chat=false",
@@ -369,15 +408,7 @@
         Rating: "N/A",
         infoPage: "N/A"
       },
-      {
-        name: "KBC Channel 1",
-        type: "youtube",
-        channelUrl: "UCypNjM5hP1qcUqQZe57jNfg",
-        logo: "https://livetvcentral.com/imgs/tvs/3304.jpg",
-        nowPlaying: "Live Broadcast",
-        Rating: "N/A",
-        infoPage: "N/A"
-      },
+
       {
         name: "Lookuptv",
         type: "stream",
@@ -450,22 +481,12 @@
         Rating: "PG",
         infoPage: "N/A"
       },
-
-      {
-        name: "Wild Earth",
-        type: "m3u8",
-        streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-60d4edddb2fdec002c141135.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=zXGxUhft_HqdUL8y1_X8",
-        logo: "https://images.plex.tv/photo?size=large-1920&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fcms%2Fproduction%2F458264fd-11c7-4568-9177-2373626ff752%2FWildEarth_artwork_Horizontal_logordx.jpg",
-        nowPlaying: "Wildlife",
-        Rating: "N/A",
-        infoPage: "N/A"
-      },
-      {
+ {
         name: "CGTN+",
         type: "m3u8",
         streamUrl: "https://amg00405-rakutentv-cgtndocumentary-rakuten-0ql8j.amagi.tv/master480p.m3u8",
         logo: "https://upload.wikimedia.org/wikipedia/commons/2/25/CGTN.png",
-        nowPlaying: "Live Broadcast",
+        nowPlaying: "Documentaries",
         Rating: "N/A",
         infoPage: "N/A"
       },
@@ -473,44 +494,18 @@
         name: "TNT",
         type: "m3u8",
         streamUrl: "https://turnerlive.warnermediacdn.com/hls/live/2023168/tnteast/slate/VIDEO_0_3564000.m3u8",
-        logo: "https://d14smv89t73oqm.cloudfront.net/dynamic/channel/00000000/23/4b3d3fb5cd7faf5a1a988e64777f3009a41c8097_1650977356.png",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxerbBmIwOoSz6Dz-FRMaT1aJq5raXiseVf_VJYoDuRo3ZHI0ImiGQXCmvfgHFv9v0m3w&usqp=CAU",
         nowPlaying: "Live Broadcast",
         Rating: "N/A",
         infoPage: "N/A"
       },
-      {
-        name: "Aljazeera",
-        type: "youtube",
-        channelUrl: "UCNye-wNBqNL5ZzHSJj3l8Bg",
-        logo: "https://logos-world.net/wp-content/uploads/2023/04/Al-Jazeera-Logo-500x281.png",
-        nowPlaying: "World News",
-        Rating: "GE",
-        infoPage: "N/A"
-      },
-      {
-        name: "France 24",
-        type: "youtube",
-        channelUrl: "UCQfwfsi5VrQ8yKZ-UWmAEFg",
-        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/6/65/FRANCE_24_logo.svg/200px-FRANCE_24_logo.svg.png",
-        nowPlaying: "World News",
-        Rating: "GE",
-        infoPage: "N/A"
-      },
-      {
-        name: "CNN",
-        type: "m3u8",
-        streamUrl: "https://turnerlive.warnermediacdn.com/hls/live/586495/cnngo/cnn_slate/VIDEO_0_3564000.m3u8",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/CNN_International_logo.svg/960px-CNN_International_logo.svg.png",
-        nowPlaying: "World News",
-        Rating: "GE",
-        infoPage: "N/A"
-      },
+
       {
         name: "Nickelodeon Jr",
         type: "m3u8",
         streamUrl: "https://fl5.moveonjoy.com/NICK_JR/index.m3u8",
-        logo: "/images/nickelodeon-icon.png",
-        nowPlaying: "Movies",
+        logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhojXucO7YQMjJjynua9IX3BN1AZIFnoNeOqRBN2_9TIaFlMwmbMq6XrWhg5_wIKmAf9PcUxSI2etgz95Pmi12Foqxe4F_ghNctgEhbVflI7n6Lttq6pMdQXNhaf4_ho32HNfy32bV2lURpJfdTuij15RasZ2gqVGC38nMz30XHzBZtcMEGgSpq/s400/nick-jr-logo-2023_3.jpg",
+        nowPlaying: "Cartoon",
         Rating: "PG",
         infoPage: "N/A"
       },
@@ -518,11 +513,13 @@
         name: "Nickenito",
         type: "stream",
         streamUrl: "https://tvhe.neez.id.au/stream/channelid/1564037361?profile=pass",
-        logo: "/images/nickelodeon-icon.png",
-        nowPlaying: "Movies",
+        logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhojXucO7YQMjJjynua9IX3BN1AZIFnoNeOqRBN2_9TIaFlMwmbMq6XrWhg5_wIKmAf9PcUxSI2etgz95Pmi12Foqxe4F_ghNctgEhbVflI7n6Lttq6pMdQXNhaf4_ho32HNfy32bV2lURpJfdTuij15RasZ2gqVGC38nMz30XHzBZtcMEGgSpq/s400/nick-jr-logo-2023_3.jpg",
+        nowPlaying: "Cartoon",
         Rating: "PG",
         infoPage: "N/A"
       },
+
+     
       {
         name: "Rick TV",
         type: "m3u8",
@@ -624,24 +621,6 @@
         infoPage: "N/A"
       },
       {        
-        name: "Cinemax",
-        type: "m3u8",
-        streamUrl: "http://fl2.moveonjoy.com/CINEMAX_EAST/index.m3u8",
-        logo: "https://kenyalivetv.co.ke/uploads/tv/3_icon_ramogitv.webp",
-        nowPlaying: "Live Broadcast",
-        Rating: "N/A",
-        infoPage: "N/A"
-      },
-      {        
-        name: "Movie Fe",
-        type: "m3u8",
-        streamUrl: "https://vcp.myplaytv.com/moviefe/moviefe/playlist.m3u8",
-        logo: "https://static.vecteezy.com/system/resources/previews/012/657/549/non_2x/illustration-negative-film-reel-roll-tapes-for-movie-cinema-video-logo-vector.jpg",
-        nowPlaying: "Live Broadcast",
-        Rating: "N/A",
-        infoPage: "N/A"
-      },
-      {        
         name: "MTV",
         type: "m3u8",
         streamUrl: "https://fl2.moveonjoy.com/MTV/index.m3u8",
@@ -668,15 +647,7 @@
         Rating: "N/A",
         infoPage: "N/A"
       },
-      {
-        name: "TV Jamaica",
-        type: "m3u8",
-        streamUrl: "https://rjr-tvj-geo.akamaized.net/hls/live/2041530/TVJ_GEO/1/streamPlaylist.m3u8",
-        logo: "https://radiojamaicanewsonline.com/assets/img/stories/display_pic/1470733964.png",
-        nowPlaying: "Music",
-        Rating: "PG",
-        infoPage: "N/A"
-      },
+
       {
         name: "Wu Tang collection",
         type: "m3u8",
@@ -693,6 +664,24 @@
         logo: "https://images.plex.tv/photo?size=large-1920&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fcms%2Fproduction%2F6d941e2d-2852-4b6e-83e0-99a10920ddb3%2FAction_Hollywood_Movies_artwork_horizontal_-_Angela_ChanRDX.jpg",
         nowPlaying: "Movies",
         Rating: "PG",
+        infoPage: "N/A"
+      },
+      {
+        name: "TV Jamaica",
+        type: "m3u8",
+        streamUrl: "https://rjr-tvj-geo.akamaized.net/hls/live/2041530/TVJ_GEO/1/streamPlaylist.m3u8",
+        logo: "https://radiojamaicanewsonline.com/assets/img/stories/display_pic/1470733964.png",
+        nowPlaying: "Music",
+        Rating: "PG",
+        infoPage: "N/A"
+      },
+      {
+        name: "Wild Earth",
+        type: "m3u8",
+        streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-60d4edddb2fdec002c141135.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=zXGxUhft_HqdUL8y1_X8",
+        logo: "https://images.plex.tv/photo?size=large-1920&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fcms%2Fproduction%2F458264fd-11c7-4568-9177-2373626ff752%2FWildEarth_artwork_Horizontal_logordx.jpg",
+        nowPlaying: "Wildlife",
+        Rating: "N/A",
         infoPage: "N/A"
       },
 
