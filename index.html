@@ -863,7 +863,7 @@
     // Update initial load logic
     document.addEventListener("DOMContentLoaded", async function () {
       initChannels();
-      const firstChannel = channels[1];
+      const firstChannel = channels[0];
       
       if (firstChannel.type === "youtube") {
         const channelId = firstChannel.channelUrl; // Directly use the Channel ID
