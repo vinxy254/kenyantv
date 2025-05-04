@@ -276,13 +276,10 @@
 <body>
  <h1 style="position: absolute; left: -9999px; top: -9999px;">Kenya Live TV: Watch live TV channels online</h1>
   <!-- Loading Element -->
-<!--   <div id="loading" style="display: none;">Initializing Player...</div> -->
+  <div id="loading" style="display: none;">Initializing Player...</div>
 
   <div class="video-container">
     <div id="player"></div>
-  </div>
-  <div class="sidebar-trigger">
-  <span class="channel-label">Channels</span>
   </div>
 
   <div class="sidebar-trigger"></div>
@@ -931,7 +928,7 @@
 
     let hls = null; // HLS.js instance
 
-    // Function to generate YouTube embed URL from channel ID
+   // Function to generate YouTube embed URL from channel ID
     function getYouTubeEmbedUrl(channelId) {
       return `https://www.youtube.com/embed/live_stream?channel=${channelId}&autoplay=1&rel=0&showinfo=0&enablejsapi=0&controls=0&disablekb=1&modestbranding=1`;
     }
@@ -1091,19 +1088,19 @@
     // Show the ad when a channel is clicked
     document.querySelectorAll('.channel-card').forEach((card) => {
       card.addEventListener('click', () => {
-        showAd();
+        //showAd();
       });
     });
 
     // Show the ad when the page loads
     document.addEventListener('DOMContentLoaded', () => {
-      showAd();
+      //showAd();
     });
 
     // Update initial load logic
     document.addEventListener("DOMContentLoaded", async function () {
       initChannels();
-      const firstChannel = channels[1];
+      const firstChannel = channels[0];
       
       if (firstChannel.type === "youtube") {
         const channelId = firstChannel.channelUrl; // Directly use the Channel ID
@@ -1124,7 +1121,7 @@
       
       const banner = document.getElementById('donationBanner');
       banner.classList.add('active');
-      bannerVisible = true;
+      bannerVisible = false;
       
       setTimeout(() => {
         closeBanner(); // Hide after 10 seconds
@@ -1152,7 +1149,7 @@
     // Call this when channel changes
     function handleChannelChange() {
       if(!bannerVisible) {
-        showBanner();
+        //showBanner();
       }
       resetBannerTimer();
     }
@@ -1168,9 +1165,9 @@
     });
 
     function donateNow() {
-      window.open('https://your-donation-link.com', '_blank');
+      window.open('https://www.mchanga.africa/fundraiser/112622', '_blank');
     }
-
+  
     // Close banner when clicking the close button
     document.getElementById('closeBannerBtn').addEventListener('click', (e) => {
       e.stopPropagation(); // Prevent triggering donateNow() when closing
@@ -1187,3 +1184,4 @@
   </script>
 </body>
 </html>
+"
