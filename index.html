@@ -1113,19 +1113,19 @@
     // Show the ad when a channel is clicked
     document.querySelectorAll('.channel-card').forEach((card) => {
       card.addEventListener('click', () => {
-        //showAd();
+        showAd();
       });
     });
 
     // Show the ad when the page loads
     document.addEventListener('DOMContentLoaded', () => {
-      //showAd();
+      showAd();
     });
 
     // Update initial load logic
     document.addEventListener("DOMContentLoaded", async function () {
       initChannels();
-      const firstChannel = channels[0];
+      const firstChannel = channels[1];
       
       if (firstChannel.type === "youtube") {
         const channelId = firstChannel.channelUrl; // Directly use the Channel ID
@@ -1146,7 +1146,7 @@
       
       const banner = document.getElementById('donationBanner');
       banner.classList.add('active');
-      bannerVisible = false;
+      bannerVisible = true;
       
       setTimeout(() => {
         closeBanner(); // Hide after 10 seconds
@@ -1174,7 +1174,7 @@
     // Call this when channel changes
     function handleChannelChange() {
       if(!bannerVisible) {
-        //showBanner();
+        showBanner();
       }
       resetBannerTimer();
     }
@@ -1190,9 +1190,9 @@
     });
 
     function donateNow() {
-      window.open('https://www.mchanga.africa/fundraiser/112622', '_blank');
+      window.open('https://your-donation-link.com', '_blank');
     }
-  
+
     // Close banner when clicking the close button
     document.getElementById('closeBannerBtn').addEventListener('click', (e) => {
       e.stopPropagation(); // Prevent triggering donateNow() when closing
