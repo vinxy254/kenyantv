@@ -1019,8 +1019,7 @@
            loading.style.display = "none";
            hls.subtitleTrack = -1;
            video.play().catch((error) => {
-             loading.textContent = "Click to play";
-             loading.style.display = "block";
+                console.warn("Autoplay failed:", error);
            });
         });
       } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
