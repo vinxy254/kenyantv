@@ -1018,9 +1018,9 @@
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
            loading.style.display = "none";
            hls.subtitleTrack = -1;
-        //   video.play().catch((error) => {
-        //     loading.textContent = "Click to play";
-        //     loading.style.display = "block";
+           video.play().catch((error) => {
+             loading.textContent = "Click to play";
+             loading.style.display = "block";
            });
         });
       } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
