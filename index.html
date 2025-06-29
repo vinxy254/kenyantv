@@ -1009,19 +1009,19 @@
           debug: true,
           enableWorker: true,
         });
-        hls.on(Hls.Events.ERROR, (event, data) => {
-          console.error("HLS Error:", data);
-          loading.textContent = "Error loading stream";
-        });
+        // hls.on(Hls.Events.ERROR, (event, data) => {
+        //   console.error("HLS Error:", data);
+        //   loading.textContent = "Error loading stream";
+        // });
         hls.loadSource(url);
         hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-          loading.style.display = "none";
-          hls.subtitleTrack = -1;
-          video.play().catch((error) => {
-            loading.textContent = "Click to play";
-            loading.style.display = "block";
-          });
+        // hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        //   loading.style.display = "none";
+        //   hls.subtitleTrack = -1;
+        //   video.play().catch((error) => {
+        //     loading.textContent = "Click to play";
+        //     loading.style.display = "block";
+        //   });
         });
       } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
         video.src = url;
