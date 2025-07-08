@@ -265,7 +265,11 @@
       display: flex;
       gap: 5px;
     }
-    
+    .iframe-wrapper {
+      width: 100%;
+      height: calc(100% - 40px);
+      overflow: hidden;
+    }
     .chat-controls button {
       background: rgba(255, 255, 255, 0.2);
       border: none;
@@ -285,13 +289,17 @@
     }
     
     #chatIframe {
-      width: 133%;
-      height: 133%;
+      width: 133.33%;
+      height: 133.33%;
       transform: scale(0.75);
+      transform-origin: top left;
       border: none;
       background: transparent;
       opacity: 0;
       transition: opacity 0.3s ease;
+    }
+    #chatIframe.loaded {
+      opacity: 1;
     }
     
     #chatIframe.loaded {
