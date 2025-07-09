@@ -448,7 +448,11 @@
         <div class="loading-spinner"></div>
         <p>Connecting to chat...</p>
       </div>
-      <iframe id="chatIframe" allowtransparency="true"></iframe>
+      <iframe id="chatIframe" 
+        allowtransparency="true"
+        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+        referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
     </div>
   </div>
   
