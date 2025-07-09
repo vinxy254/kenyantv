@@ -1093,7 +1093,7 @@
     toggleChatIcon(true);
     
     // Only load chat if we have a valid video ID
-    if (currentChannel && currentChannel.videoId) {
+    //if (currentChannel && currentChannel.videoId) {
       // Show loading state
       document.getElementById('chatLoading').classList.remove('hidden');
       document.getElementById('chatIframe').classList.remove('loaded');
@@ -1107,7 +1107,7 @@
         document.getElementById('chatLoading').classList.add('hidden');
         this.classList.add('loaded');
      };
-    }
+    //}
   }
 });
     
