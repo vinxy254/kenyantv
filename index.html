@@ -1093,20 +1093,20 @@
     toggleChatIcon(true);
     
     // Only load chat if we have a valid video ID
-    if (currentChannel && currentChannel.videoId) {
-      // Show loading state
-      document.getElementById('chatLoading').classList.remove('hidden');
-      document.getElementById('chatIframe').classList.remove('loaded');
+    // if (currentChannel && currentChannel.videoId) {
+    //   // Show loading state
+    //   document.getElementById('chatLoading').classList.remove('hidden');
+    //   document.getElementById('chatIframe').classList.remove('loaded');
       
-      // Set the chat URL
-      document.getElementById('chatIframe').src = getYouTubeChatUrl(currentChannel.videoId);
+    //   // Set the chat URL
+    //   document.getElementById('chatIframe').src = getYouTubeChatUrl(currentChannel.videoId);
       
-      // Listen for iframe load event
-      document.getElementById('chatIframe').onload = function() {
-        // Hide loading indicator and show chat
-        document.getElementById('chatLoading').classList.add('hidden');
-        this.classList.add('loaded');
-      };
+    //   // Listen for iframe load event
+    //   document.getElementById('chatIframe').onload = function() {
+    //     // Hide loading indicator and show chat
+    //     document.getElementById('chatLoading').classList.add('hidden');
+    //     this.classList.add('loaded');
+    //   };
     }
   }
 });
