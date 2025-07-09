@@ -1078,18 +1078,22 @@
     }
 
     // Floating Chat Functionality - Optimized
-   document.getElementById('chatButton').addEventListener('click', function() {
+document.getElementById('chatButton').addEventListener('click', function() {
   const chatContainer = document.getElementById('chatContainer');
   const isCurrentlyOpen = chatContainer.classList.contains('active');
   
   // Always toggle the chat visibility immediately
-if {
+  if (isCurrentlyOpen) {
+    // Close chat if it's open
+    chatContainer.classList.remove('active');
+    toggleChatIcon(false);
+  } else {
     // Open chat immediately
     chatContainer.classList.add('active');
     toggleChatIcon(true);
     
     // Only load chat if we have a valid video ID
-    //if (currentChannel && currentChannel.videoId) {
+    if (currentChannel && currentChannel.videoId) {
       // Show loading state
       document.getElementById('chatLoading').classList.remove('hidden');
       document.getElementById('chatIframe').classList.remove('loaded');
@@ -1102,14 +1106,9 @@ if {
         // Hide loading indicator and show chat
         document.getElementById('chatLoading').classList.add('hidden');
         this.classList.add('loaded');
-     };
-    //}
+      };
+    }
   }
-  else (isCurrentlyOpen) {
-    // Close chat if it's open
-    chatContainer.classList.remove('active');
-    toggleChatIcon(false);
-  } 
 });
     
     document.getElementById('closeChat').addEventListener('click', function() {
