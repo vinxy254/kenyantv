@@ -1083,11 +1083,7 @@
   const isCurrentlyOpen = chatContainer.classList.contains('active');
   
   // Always toggle the chat visibility immediately
-  if (isCurrentlyOpen) {
-    // Close chat if it's open
-    chatContainer.classList.remove('active');
-    toggleChatIcon(false);
-  } else {
+if {
     // Open chat immediately
     chatContainer.classList.add('active');
     toggleChatIcon(true);
@@ -1109,6 +1105,11 @@
      };
     //}
   }
+  else (isCurrentlyOpen) {
+    // Close chat if it's open
+    chatContainer.classList.remove('active');
+    toggleChatIcon(false);
+  } 
 });
     
     document.getElementById('closeChat').addEventListener('click', function() {
