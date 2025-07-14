@@ -1149,22 +1149,14 @@
     }
 
     // Floating Chat Functionality - Optimized
-  document.getElementById('chatButton').addEventListener('click', function() {
-    const chatContainer = document.getElementById('chatContainer');
-    
-    // Toggle visibility immediately
-    chatContainer.classList.toggle('active');
-    
-    // Toggle the button icon
-    toggleChatIcon(chatContainer.classList.contains('active'));
-    
-    // Only try to load chat if opening (not closing)
-    if (chatContainer.classList.contains('active')) {
-      // Remove loading checks and just load immediately
-      document.getElementById('chatIframe').src = currentChannel?.videoId 
-        ? getYouTubeChatUrl(currentChannel.videoId) 
-        : 'about:blank';
-    }
+      document.getElementById('chatButton').addEventListener('click', function() {
+      const chatContainer = document.getElementById('chatContainer');
+      chatContainer.classList.toggle('active');
+      
+      // Only load chat if container is visible and we have a video ID
+      if (chatContainer.classList.contains('active') && currentChannel && currentChannel.videoId) {
+        document.getElementById('chatIframe').src = getYouTubeChatUrl(currentChannel.videoId);
+      }
   });
     
     document.getElementById('closeChat').addEventListener('click', function() {
