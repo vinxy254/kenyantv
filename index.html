@@ -1149,20 +1149,39 @@
     }
 
     // Floating Chat Functionality - Optimized
-      document.getElementById('chatButton').addEventListener('click', function() {
-      const chatContainer = document.getElementById('chatContainer');
-      chatContainer.classList.toggle('active');
+   document.getElementById('chatButton').addEventListener('click', function() {
+        const chatContainer = document.getElementById('chatContainer');
+        const isOpening = !chatContainer.classList.contains('active');
+        
+        if (isOpening && currentChannel && currentChannel.videoId) {
+          // Show loading state
+          document.getElementById('chatLoading').classList.remove('hidden');
+          document.getElementById('chatIframe').classList.remove('loaded');
+          
+          // Set the chat URL
+          document.getElementById('chatIframe').src = getYouTubeChatUrl(currentChannel.videoId);
+          
+          // Show chat container
+          chatContainer.classList.add('active');
+          toggleChatIcon(true);
+          
+          // Listen for iframe load event
+          document.getElementById('chatIframe').onload = function() {
+            // Hide loading indicator and show chat
+            document.getElementById('chatLoading').classList.add('hidden');
+            this.classList.add('loaded');
+          };
+        } else {
+          // Close chat
+          chatContainer.classList.remove('active');
+          toggleChatIcon(false);
+        }
+      });
       
-      // Only load chat if container is visible and we have a video ID
-      if (chatContainer.classList.contains('active') && currentChannel && currentChannel.videoId) {
-        document.getElementById('chatIframe').src = getYouTubeChatUrl(currentChannel.videoId);
-      }
-  });
-    
-    document.getElementById('closeChat').addEventListener('click', function() {
-      document.getElementById('chatContainer').classList.remove('active');
-      resetChatButton();
-    });
+      document.getElementById('closeChat').addEventListener('click', function() {
+        document.getElementById('chatContainer').classList.remove('active');
+        resetChatButton();
+      });
     
     // Chat transparency controls
     document.getElementById('opacityUp').addEventListener('click', function() {
