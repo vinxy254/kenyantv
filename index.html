@@ -1208,7 +1208,7 @@
           currentChannel = channelData; // Update current channel
           
           // Show/hide chat button based on channel type
-          showBanner();
+          //showBanner();
           if (channelData.type === "youtube" && channelData.videoId) {
             document.getElementById('chatButton').style.display = 'flex';
           } else {
@@ -1712,7 +1712,7 @@
     // Call this when channel changes
     function handleChannelChange() {
       if(!bannerVisible) {
-        showBanner();
+        //showBanner();
       }
       resetBannerTimer();
     }
