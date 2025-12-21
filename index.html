@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -261,6 +261,8 @@
     font-size: 12px;
   }
 }
+
+
 
 /* Tablet - Medium banner */
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -642,6 +644,51 @@
             z-index: 101;
             display: none;
         }
+
+
+
+              /* Close button for sidebar */
+        .sidebar-close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 107, 107, 0.8);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            z-index: 4;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+
+        .sidebar-close-btn:hover {
+            background: rgba(255, 107, 107, 1);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* Adjust categories side padding to account for close button */
+        .categories-side {
+            padding-top: 40px; /* Make room for close button */
+        }
+
+        /* Make sure the trigger button doesn't interfere */
+        .sidebar-trigger:hover + .channel-sidebar,
+        .channel-sidebar:hover {
+            left: 0;
+        }
+
+        /* When sidebar is manually closed via button, keep it closed until trigger is hovered again */
+        .channel-sidebar.closed {
+            left: -350px !important;
+        }
   </style>
 </head>
 <body>
@@ -682,6 +729,9 @@
 
   <div class="sidebar-trigger">CHANNELS</div>
   <aside class="channel-sidebar" id="channelList">
+    <button class="sidebar-close-btn" id="closeSidebar" title="Close Sidebar">
+        <i class="fas fa-times"></i>
+    </button>
     <div class="categories-side" id="categoriesSide">
       <h3>CATEGORIES</h3>
       <!-- Categories will be populated by JavaScript -->
@@ -2283,6 +2333,47 @@
         resetChatButton();
       }
     });
+
+
+
+    //close panel event listeners
+    // Sidebar close button functionality
+    document.getElementById('closeSidebar').addEventListener('click', function(e) {
+        e.stopPropagation(); // Prevent triggering sidebar hover
+        const sidebar = document.querySelector('.channel-sidebar');
+        sidebar.classList.add('closed');
+    });
+
+    // Make sure sidebar opens when trigger is hovered (even after being closed)
+    document.querySelector('.sidebar-trigger').addEventListener('mouseenter', function() {
+        const sidebar = document.querySelector('.channel-sidebar');
+        sidebar.classList.remove('closed');
+    });
+
+    // Also open sidebar when clicking on the trigger (for mobile/touch devices)
+    document.querySelector('.sidebar-trigger').addEventListener('click', function() {
+        const sidebar = document.querySelector('.channel-sidebar');
+        sidebar.classList.remove('closed');
+    });
+
+    // Close sidebar when clicking outside of it (on the main video area)
+    document.getElementById('player').addEventListener('click', function() {
+        const sidebar = document.querySelector('.channel-sidebar');
+        if (!sidebar.classList.contains('closed')) {
+            sidebar.classList.add('closed');
+        }
+    });
+
+    // Don't close sidebar when clicking inside it
+    document.querySelector('.channel-sidebar').addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+
+
+
+
+
 
     // Donation Banner Functions
     function showBanner() {
