@@ -21,6 +21,15 @@ function getYouTubeEmbedUrl(channelId) {
     return `https://www.youtube.com/embed/live_stream?channel=${channelId}&autoplay=1&rel=0&showinfo=0&enablejsapi=0&controls=0&disablekb=1&modestbranding=1`;
 }
 
+// Add this function somewhere in player.js
+function stopIframePlayback() {
+  const iframe = document.querySelector('.external-iframe');
+  if (iframe) {
+    // Stop video by setting src to empty string
+    iframe.src = 'about:blank';
+  }
+}
+
 // Load channel
 function loadChannel(channelData) {
   if (channelData.type === "youtube") {
