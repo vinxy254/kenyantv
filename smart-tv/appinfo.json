@@ -1,0 +1,11 @@
+{
+  "id": "com.remoteapp",
+  "version": "2.0.0",
+  "vendor": "Songa technologies",
+  "type": "web",
+  "main": "index.html",
+  "title": "remote app",
+  "icon": "icon.png",
+  "largeIcon": "largeIcon.png",
+  "uiRevision": 2
+}

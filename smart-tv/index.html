@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <meta charset="UTF-8" />
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://kenyantv.live/index.html" />
+  <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet">
+  <meta name="description" content="Your all-in-one live TV stream. Enjoy the best selection of Kenyan channels, international networks, movies, music, and news. There is truly something for everyone.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kenyan TV Live Streaming</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+ <h1 style="position: absolute; left: -9999px; top: -9999px;">Kenya Live TV: Watch live TV channels online</h1>
+  
+  <!-- Loading Element -->
+  <div id="loading" style="display: none;">
+    <div class="spinner"></div>
+    <span>Initializing Player...</span>
+  </div>
+
+  <!-- Remote Status Display -->
+  <div class="remote-status" id="remoteStatus"></div>
+
+  <!-- Floating Chat Elements -->
+  <button id="chatButton" title="Show Live Chat">
+    <i id="chatIcon" class="fas fa-comments"></i>
+    <i id="closeChatIcon" class="fas fa-times"></i>
+  </button>
+  
+  <div id="chatContainer">
+    <div class="iframe-wrapper">
+      <div class="chat-controls-floating">
+        <button id="opacityUp" title="Increase Transparency">+</button>
+        <button id="opacityDown" title="Decrease Transparency">-</button>
+        <button id="closeChat" title="Close Chat">×</button>
+      </div>
+      <div id="chatLoading">
+        <div class="loading-spinner"></div>
+        <p>Connecting to chat...</p>
+      </div>
+      <iframe id="chatIframe" 
+        allowtransparency="true"
+        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+  
+  <div class="sidebar-trigger">CHANNELS</div>
+  <aside class="channel-sidebar" id="channelList">
+    <button class="sidebar-close-btn" id="closeSidebar" title="Close Sidebar">
+        <i class="fas fa-times"></i>
+    </button>
+    <div class="categories-side" id="categoriesSide">
+      <h3>CATEGORIES</h3>
+      <!-- Categories will be populated by JavaScript -->
+    </div>
+    <div class="channels-side" id="channelsSide">
+      <h3>ALL CHANNELS</h3>
+      <!-- Channels will be populated by JavaScript based on selected category -->
+    </div>
+  </aside>
+
+  <div id="donationBanner" onclick="donateNow()">
+    <img src="images/mchange.jpg" alt="Support our service - Donate Now">
+    <button id="closeBannerBtn">&times;</button>
+  </div>
+
+  <!-- Video.js Player -->
+  <div id="player" class="video-container">
+    <video id="my-video" class="video-js" controls preload="auto" data-setup='{}'>
+      <p class="vjs-no-js">
+        Please enable JavaScript to watch this video.
+      </p>
+    </video>
+    
+    <!-- Blue screen overlay -->
+    <div class="blue-screen" id="blue-screen">
+      <div class="bouncing-text" id="bouncing-text">No signal unsupported<br>or broken broadcast link</div>
+    </div>
+    
+    <!-- Channel display -->
+    <div class="channel-display" id="channel-display"></div>
+  </div>
+
+  <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@videojs/http-streaming@3.0.2/dist/videojs-http-streaming.min.js"></script>
+   
+  <script src="js/channels.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/remote-control.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
