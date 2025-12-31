@@ -75,8 +75,18 @@ function playHLSStream(url, channelName) {
   
   // Hide iframe
   if (iframe) {
-    iframe.src = 'about:blank';
-    iframe.style.display = 'none';
+        iframe = document.createElement('iframe');
+        iframe.className = 'external-iframe';
+        iframe.width = '100%';
+        iframe.height = '100%';
+        iframe.frameBorder = '0';
+        iframe.allow = 'autoplay; encrypted-media';
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        iframe.allowFullscreen = true;
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = '0';
+        playerContainer.appendChild(iframe);
   }
   
   // Show video element
