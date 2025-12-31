@@ -19,8 +19,14 @@ function hideBlueScreen() {
 // Load channel
 function loadChannel(channelData) {
   if (channelData.type === "youtube") {
-    const embedUrl = `https://www.youtube.com/embed/live_stream?channel=${channelData.channelUrl}&autoplay=1&rel=0`;
-    loadExternalStream(embedUrl);
+    const channelId = channelData.channelUrl;
+    if (channelId) {
+      loadYouTubeLive(channelId);
+    } else {
+      console.error("Invalid YouTube Channel ID");
+    }
+    //const embedUrl = `https://www.youtube.com/embed/live_stream?channel=${channelData.channelUrl}&autoplay=1&rel=0`;
+    //loadExternalStream(embedUrl);
   } else if (channelData.type === "stream") {
     loadExternalStream(channelData.streamUrl);
   } else if (channelData.type === "m3u8") {
@@ -65,6 +71,47 @@ function loadExternalStream(url) {
   iframe.src = url;
   iframe.style.display = 'block';
 }
+
+// Function to load YouTube live stream by channel ID
+    function loadYouTubeLive(channelId) {
+      const embedUrl = getYouTubeEmbedUrl(channelId);
+      const playerContainer = document.getElementById("player");
+      const videoEl = document.getElementById('my-video');
+
+      // Stop any HLS instance and video playback
+      hideBlueScreen();
+      if (hls) {
+        try { hls.destroy(); } catch (e) { console.warn('Error destroying Hls instance', e); }
+        hls = null;
+      }
+      try { player.pause(); } catch (e) { /* ignore */ }
+      try { if (player.currentTime) player.currentTime(0); } catch (e) {}
+
+      // Hide the Video.js element
+      if (videoEl) videoEl.style.display = 'none';
+
+      // Stop any existing iframe playback before reusing
+      stopIframePlayback();
+
+      // Reuse or create a persistent iframe so we don't remove the video element
+      let iframe = playerContainer.querySelector('.external-iframe');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.className = 'external-iframe';
+        iframe.width = '100%';
+        iframe.height = '100%';
+        iframe.frameBorder = '0';
+        iframe.allow = 'autoplay; encrypted-media';
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        iframe.allowFullscreen = true;
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = '0';
+        playerContainer.appendChild(iframe);
+      }
+      iframe.src = embedUrl;
+      iframe.style.display = 'block';
+    }
 
 // Play HLS stream
 function playHLSStream(url, channelName) {
