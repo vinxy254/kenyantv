@@ -16,6 +16,11 @@ function hideBlueScreen() {
   blueScreen.style.display = 'none';
 }
 
+// Function to generate YouTube embed URL from channel ID
+function getYouTubeEmbedUrl(channelId) {
+    return `https://www.youtube.com/embed/live_stream?channel=${channelId}&autoplay=1&rel=0&showinfo=0&enablejsapi=0&controls=0&disablekb=1&modestbranding=1`;
+}
+
 // Load channel
 function loadChannel(channelData) {
   if (channelData.type === "youtube") {
@@ -41,10 +46,7 @@ function loadChannel(channelData) {
   currentChannel = channelData;
 }
 
-// Function to generate YouTube embed URL from channel ID
-function getYouTubeEmbedUrl(channelId) {
-    return `https://www.youtube.com/embed/live_stream?channel=${channelId}&autoplay=1&rel=0&showinfo=0&enablejsapi=0&controls=0&disablekb=1&modestbranding=1`;
-}
+
 
 
 // Load external stream (YouTube, etc.)
