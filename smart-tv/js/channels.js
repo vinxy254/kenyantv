@@ -277,6 +277,33 @@ const channels = [
         infoPage: "N/A"
       },
       {
+        name: "National Geographic",
+        type: "m3u8",
+        streamUrl: "https://fl1.moveonjoy.com/National_Geographic/index.m3u8",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVNmQpa8NPoHlt0qllQrNCmEALB2bPFJRZRA&s",
+        category: "Entertainment",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "Nat Geo Wild",
+        type: "m3u8",
+        streamUrl: "https%3a//fl1.moveonjoy.com/Nat_Geo_Wild/index.m3u8",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVNmQpa8NPoHlt0qllQrNCmEALB2bPFJRZRA&s",
+        category: "Entertainment",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+        {
+        name: "Paramount",
+        type: "m3u8",
+        streamUrl: "https://fl1.moveonjoy.com/PARAMOUNT_NETWORK/index.m3u8",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Paramount_Pictures_2022_%28Blue%29.svg/960px-Paramount_Pictures_2022_%28Blue%29.svg.png",
+        category: "Entertainment",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
         name: "Just for Laughs",
         type: "m3u8",
         streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-64704954e536e0faaf10be9f.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=smLAakyp6S3j3-xV84Vo",
@@ -367,6 +394,15 @@ const channels = [
         infoPage: "N/A"
       },
       {
+        name: "CW",
+        type: "m3u8",
+        streamUrl: "https://cvtv.cvalley.net/hls/KCWECW/KCWECW.m3u8",
+        logo: "https://streamingbetter.com/wp-content/uploads/2024/01/The-CW-new-logo-1200x675.jpg",
+        category: "Entertainment",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
         name: "Miramax movies",
         type: "m3u8",
         streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-661fca34414d94009d1206ec/variant.m3u8?x-plex-token=smLAakyp6S3j3-xV84Vo&x-plex-advertising-identifier=&x-plex-client-identifier=724c6121-eadf-4ae2-8ab0-3026d3c7c164&x-plex-playback-id=p_11bd71fe-d16b-4169-a5cb-6c9337323817&x-plex-playback-session-id=&x-plex-session-id=&x-plex-device=Linux&x-plex-device-name=Plex+Mediaverse&x-plex-advertising-donottrack=1&x-plex-drm=&x-plex-model=&x-plex-platform=Firefox&x-plex-platform-version=134.0&x-plex-product=Plex+Mediaverse&x-plex-device-screen-resolution=&x-plex-device-vendor=&x-plex-version=&x-plex-provider-streaming-start=1759323258&url=c4ba6dc2d30047b6f3655d98c0377b4c-47c0f35a49d7ecb0e598de5af0980bf7997eb3d5b6cb5f0e9e79f80eabe0194c830bfe908809b70b3387d073a2701ab3e2f12342c912fd09e3d8869a398f9e51ae4799e4b318dbdaf2fccca8b638429d815e849bf3b799c909abd34d14e34016daa09ade0c9c9ac17651eb98c2c686426f37d5c592ccaff8ed4db56fe80b114a25918bda83af9a4d3d2f70c0e9bb2b682ac8bef67608b9ce5a836753a06c186ab7a2f48f4b596da2b3c7c9700819ff8c68b58892bfad4ece0846d86d962f304ddc72736196ee7d839959423e3dd3b2a4",
@@ -393,7 +429,15 @@ const channels = [
         Rating: "PG",
         infoPage: "N/A"
       },
-
+      {
+        name: "Nickelodeon Junior",
+        type: "m3u8",
+        streamUrl: "https://fl1.moveonjoy.com/NICK_JR/index.m3u8",
+        logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhojXucO7YQMjJjynua9IX3BN1AZIFnoNeOqRBN2_9TIaFlMwmbMq6XrWhg5_wIKmAf9PcUxSI2etgz95Pmi12Foqxe4F_ghNctgEhbVflI7n6Lttq6pMdQXNhaf4_ho32HNfy32bV2lURpJfdTuij15RasZ2gqVGC38nMz30XHzBZtcMEGgSpq/s400/nick-jr-logo-2023_3.jpg",
+        category: "Kids",
+        Rating: "PG",
+        infoPage: "N/A"
+      },
       {
         name: "Nick toons",
         type: "m3u8",
@@ -444,7 +488,7 @@ const channels = [
       {
         name: "Weather Spy",
         type: "m3u8",
-        streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-5f0ff266d71dcb00449ec030.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=ruP6Rq1Yhc8V8zWpiKoA",
+        streamUrl: "https://jukin-weatherspy-2-in.samsung.wurl.tv/playlist.m3u8",
         logo: "https://www.tubefilter.com/wp-content/uploads/2020/07/weather-spy-1920x1131.jpg",
         category: "Nature",
         Rating: "N/A",
@@ -489,9 +533,45 @@ const channels = [
         infoPage: "N/A"
       },
       {
+        name: "fuse",
+        type: "m3u8",
+        streamUrl: "https://fl1.moveonjoy.com/FUSE/index.m3u8",
+        logo: "https://images.crunchbase.com/image/upload/c_pad,h_160,w_160,f_auto,b_white,q_auto:eco,dpr_1/pwshhr5ddhfvqqk6nu4e?ik-sanitizeSvg=true",
+        category: "Entertainment",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
         name: "TVJamaica",
         type: "m3u8",
         streamUrl: "https://vod2live.univtec.com/manifest/a99a1804-dc83-411f-8c1c-b62f08cdfa59.m3u8",
+        logo: "https://static.wikia.nocookie.net/logopedia/images/2/2c/Television_Jamaica_Logo.png/",
+        category: "Entertainment",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "MovieSphere",
+        type: "m3u8",
+        streamUrl: "https://amg00353-lionsgatestudio-moviesphere-xumo-zh5u0.amagi.tv/playlist.m3u8",
+        logo: "https://static.wikia.nocookie.net/logopedia/images/4/40/MovieSphere_2020_logo.jpg/",
+        category: "Movies",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Lifetime Movies",
+        type: "m3u8",
+        streamUrl: "https://fl1.moveonjoy.com/LIFETIME_MOVIE_NETWORK/index.m3u8",
+        logo: "https://static.wikia.nocookie.net/logopedia/images/2/2c/Television_Jamaica_Logo.png/",
+        category: "Entertainment",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Jewelry TV",
+        type: "m3u8",
+        streamUrl: "https://content.jwplatform.com/live/broadcast/oe7UD7Ag.m3u8",
         logo: "https://static.wikia.nocookie.net/logopedia/images/2/2c/Television_Jamaica_Logo.png/",
         category: "Entertainment",
         Rating: "N/A",
@@ -723,6 +803,15 @@ const channels = [
         infoPage: "N/A"
       },
       {
+        name: "Disney Junior",
+        type: "m3u8",
+        streamUrl: "https://fl1.moveonjoy.com/DISNEY_JR/index.m3u8",
+        logo: "https://static.wikia.nocookie.net/logopedia/images/9/9d/Disney_Channel_(2010).svg",
+        category: "Kids",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
         name: "Duck TV",
         type: "m3u8",
         streamUrl: "https://mmm-dk.otteravision.com/DexaYJdJXkLqFxTK_DuckTVHDSAMS/DuckTVHDSAMS.stream/playlist.m3u8",
@@ -795,6 +884,15 @@ const channels = [
         infoPage: "N/A"
       },
       {
+        name: "Comedy Central",
+        type: "m3u8",
+        streamUrl: "https://fl1.moveonjoy.com/Comedy_Central/index.m3u8",
+        logo: "https://cdn.brandfetch.io/idEjpV-1pI/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1668421811545",
+        category: "Music",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
         name: "Cops TV",
         type: "m3u8",
         streamUrl: "https://a7d6af1c184e465db4f39316a5181c1f.mediatailor.us-east-1.amazonaws.com/v1/master/0fb304b2320b25f067414d481a779b77db81760d/RakutenTV-eu_COPS/playlist.m3u8",
@@ -827,6 +925,15 @@ const channels = [
         streamUrl: "https://aegis-cloudfront-1.tubi.video/45301c94-0d40-4cbb-b342-f5dc7949d76c/playlist.m3u8",
         logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Euronews_Logo_2025.svg/250px-Euronews_Logo_2025.svg.png",
         category: "News",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Caribbean World Channel",
+        type: "m3u8",
+        streamUrl: "https://live-us-cdn-1.tvstartupengine.com/live/playlist-prod-da1ba36f-39ba-4347-acce-c3a31de907f3/index.m3u8",
+        logo: "https://image.roku.com/developer_channels/prod/dd96e4e395f9b87ded4e034c080aa9cf1bef0b9c251f0b73405fb1189c01b156.png",
+        category: "Music",
         Rating: "N/A",
         infoPage: "N/A"
       },
