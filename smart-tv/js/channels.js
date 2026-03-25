@@ -1,7 +1,6 @@
 // Channel Configuration
 const channels = [
-  // Keep all your channel objects here
-   {
+     {
         name: "NTV Kenya",
         type: "youtube",
         channelUrl:"UCqBJ47FjJcl61fmSbcadAVg",
@@ -232,6 +231,52 @@ const channels = [
         infoPage: "N/A"
       },
       {
+        name: "Spirit TV",
+        type: "m3u8",
+        streamUrl: "https://cdnlive.myspirit.tv/LS-ATL-43240-2/index.m3u8",
+        logo: "https://static.wikia.nocookie.net/logopedia/images/9/94/Spirit_TV_2025.svg",
+        category: "Music",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "Canal motor TV",
+        type: "m3u8",
+        streamUrl: "https://digicom.hls.iptvdc.com/canalmotor/index.m3u8",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5wFMC2V2Qqo3pADMqNbuRDSjxvenPKMS3jA&s",
+        category: "Sports",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "Mr Bean TV",
+        type: "m3u8",
+        streamUrl: "https://amg00627-amg00627c40-rakuten-uk-5725.playouts.now.amagi.tv/playlist/amg00627-banijayfast-mrbeanpopupcc-rakutenuk/playlist.m3u8",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3iPv5_OSm8NCvb9ZQULPMDzlqYzExEFAW1Q&s",
+        category: "Entertainment",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+      {
+        name: "Chopper town",
+        type: "m3u8",
+        streamUrl: "https://linear-11.frequency.stream/dist/glewedtv/11/hls/master/playlist.m3u8",
+        logo: "https://freecast.com/_next/image?url=https%3A%2F%2Fd3e3bui7xn67l.cloudfront.net%2Fcms_media%2Fmedia%2Flive%2Fchannel%2Fb2223358-4c8f-4192-a7e0-4c80b666f7bd.256x256.jpg&w=256&q=75",
+        category: "Entertainment",
+        Rating: "GE",
+        infoPage: "N/A"
+      },
+       
+      {
+        name: "TVS music",
+        type: "m3u8",
+        streamUrl: "https://rpn.bozztv.com/gusa/gusa-tvsmusic/index.m3u8",
+        logo: "https://5.imimg.com/data5/SELLER/Default/2021/7/FS/OR/YA/89210578/music-tv-channel-broadcast-solutions.jpg",
+        category: "Music",
+        Rating: "GE",
+        infoPage: "N/A"
+      }, 
+      {
         name: "BeIN sports xtra",
         type: "m3u8",
         streamUrl: "https://bein-beinxtrasports-firetv.amagi.tv/playlist.m3u8",
@@ -367,6 +412,24 @@ const channels = [
         infoPage: "N/A"
       },
       {
+        name: "Motorvision",
+        type: "m3u8",
+        streamUrl: "https://mvg-mv-xumo.otteravision.com/mvg/mv/mv.m3u8",
+        logo: "https://static.wikia.nocookie.net/logopedia/images/1/18/Motorvision_TV_2016_II.png",
+        category: "Sports",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Anger mngmt",
+        type: "m3u8",
+        streamUrl: "https://aegis-cloudfront-1.tubi.video/0a019247-55a2-4b3e-8b62-b84c9cbd5b12/playlist.m3u8",
+        logo: "https://cdn2.f-cdn.com/contestentries/2350529/73641972/658574c092def_thumb900.jpg",
+        category: "Entertainment",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
         name: "Garage TV",
         type: "m3u8",
         streamUrl: "https://stream1.sersat.com/hls/garagetv.m3u8",
@@ -498,8 +561,8 @@ const channels = [
 
       {
         name: "Love Nature",
-        type: "stream",
-        streamUrl: "https://www.youtube.com/embed/daqB3i9WYIY",
+        type: "m3u8",
+        streamUrl: "https://aegis-cloudfront-1.tubi.video/6d6d0f24-8445-4b4c-bdf6-44f9e38beaa4/playlist.m3u8",
         logo: "https://static.wikia.nocookie.net/logos/images/c/c2/Love_Nature_4K.png/revision/latest/scale-to-width-down/340?cb=20211105035409&path-prefix=vi",
         category: "Nature",
         Rating: "N/A",
@@ -508,9 +571,18 @@ const channels = [
       {
         name: "Wild Earth",
         type: "m3u8",
-        streamUrl: "https://d2f9g9rfw2kx84.cloudfront.net/playlist/amg01290-wildearth-oando/cb553d167e6c64899dd43e64d4ef42a1d92414fc087a8d6933fb4b926bc10f41edbdf0c8fd37b63619d70f96690c0257596cdb5b987600c4da64a848240b4227c1c7ad79d9981209b3d80e3a5cea384b07a1460ad126573c89ab5e0ed53bb47a0046bd443b0261d4f058ac2052d8895cd92b3489abd46739780c0ecb5e0ee2c23799d7d9a89a4f5d8180367aeb5357dcfc178d8c49f9dc8505ca00a457cb26e8f7d01707ddb0aca716ec15ed240c224237f9d23ffbcd2c13444872abcc5b083f7237ad44e5073d1ccc376649eaf0dbba2ade1edd9d20936436b63a8e25a21d8571a305abe001f5e3eb9f0a7968f59f1b4d2eaef0b8cae36d658230aff9a9cf6526c8a5403617802dff2728339fb29944d59345c7e672c592600f3dc69e5dd4cce1d7a1e0ff2df640e6cefa8d25380d09632f8947ab9661da53b25ea1dc1627535504e0da79cd88cc4672056b839355c01c0bb3b8dad687ee5a06a6fbf98ebfbb2976bc061f0002776417a2a4c8b1/158/640x360_1020800/index.m3u8",
+        streamUrl: "https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg01290-wildearth-oando/playlist.m3u8",
         logo: "https://images.plex.tv/photo?size=large-1920&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fcms%2Fproduction%2F458264fd-11c7-4568-9177-2373626ff752%2FWildEarth_artwork_Horizontal_logordx.jpg",
         category: "Nature",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "Pop Kids",
+        type: "m3u8",
+        streamUrl: "https://amg01753-narrativeentert-popkids-lggb-xyy5k.amagi.tv/ts-eu-w1-n2/playlist/amg01753-narrativeentert-popkids-lggb/playlist.m3u8",
+        logo: "https://static.wikia.nocookie.net/logopedia/images/0/01/Pop_Kids_circle.png",
+        category: "Kids",
         Rating: "N/A",
         infoPage: "N/A"
       },
@@ -672,6 +744,16 @@ const channels = [
         type: "m3u8",
         streamUrl: "https://ca1.buximedia.com/itv/afrobeats/tracks-v1a1/mono.m3u8",
         logo: "https://p7.hiclipart.com/preview/837/526/450/itv-logo-of-the-bbc-television-news-2015-nyc-pride.jpg",
+        category: "Music",
+        Rating: "N/A",
+        infoPage: "N/A"
+      },
+      {
+        name: "K-Pop",
+        type: "youtube",
+        channelUrl: "UCoRXPcv8XK5fAplLbk9PTww",
+        videoId: "JVocS7Yftw8",
+        logo: "https://yt3.ggpht.com/H97A7dJ3by9fElaC_-nSTMUlXQ_7Ww_lwFiJPvzjIi1aDlf988kN3eaxTzIh6BZUgfU0jZwz=s48-c-k-c0x00ffffff-no-rj",
         category: "Music",
         Rating: "N/A",
         infoPage: "N/A"
@@ -922,7 +1004,7 @@ const channels = [
       {
         name: "Euro news",
         type: "m3u8",
-        streamUrl: "https://aegis-cloudfront-1.tubi.video/45301c94-0d40-4cbb-b342-f5dc7949d76c/playlist.m3u8",
+        streamUrl: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/euronews/euronews-en.m3u8?ads.dpname=distrotv&ads.rnd=shi9&ads.env_i=9dc32c96-3c5e-459c-a0df-59d2bc215e29&ads.env_u=&ads.name=DistroTV&ads.bundle=&ads.storeurl=&ads.appCategory=entertainment&ads.app_version=202105131041&ads.width=320&ads.height=180&ads.deviceId=&ads.deviceDNT=0&ads.gdpr=0&ads.us_privacy=0&ads.aid=&ads.deviceMake=Web&ads.deviceIdType=localStorage&ads.deviceConnectionType=2&ads.deviceCategory=web&ads.client_ip=149.50.211.155&ads.geo=SG&ads.lat=1.32540&ads.long=103.74330&ads.dma=&ads.geoType=2&ads.contentid=22886&ads.content_duration=18000&ads.episode_id=45143&ads.show_id=1244&ads.showCategories=IAB12&ads.episodeCategories=IAB12&ads.genre=News%2CGlobal%20News%2CEnglish&ads.showRating=TV-PG&ads.episodeRating=TV-PG&ads.language=en&ads.showtitle=Euronews&ads.episodetitle=Euronews&ads.keywords=euronnews&ads.contenturl=https%3A%2F%2Fwww.google.com%2F&ads.gdprConsent=&ads.paln=&ads.tagname=dtv&ads.islive=1&ads.streamtype=live&ads.vf=-reoVQx4fkK",
         logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Euronews_Logo_2025.svg/250px-Euronews_Logo_2025.svg.png",
         category: "News",
         Rating: "N/A",
@@ -940,7 +1022,7 @@ const channels = [
       {
         name: "surf Roots tv",
         type: "m3u8",
-        streamUrl: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/surf-roots-tv/master.m3u8",
+        streamUrl: "https://livechannel.mdc.akamaized.net/stitch/livechannel/1314/master.m3u8",
         logo: "https://surfroots.com/cdn/shop/files/surf_rootssquaremicflag900x900_1200x1200.png",
         category: "Music",
         Rating: "N/A",
@@ -949,7 +1031,7 @@ const channels = [
       {
         name: "Africa news.",
         type: "m3u8",
-        streamUrl: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/africanews/africanews-en.m3u8",
+        streamUrl: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/africanews/africanews-en.m3u8?ads.dpname=distrotv&ads.rnd=itp4&ads.env_i=d1b79cee-4897-4f5b-b0ff-7ef7d7ef19c8&ads.env_u=&ads.name=DistroTV&ads.bundle=&ads.storeurl=&ads.appCategory=entertainment&ads.app_version=202105131041&ads.width=1166&ads.height=656&ads.deviceId=&ads.deviceDNT=0&ads.gdpr=0&ads.us_privacy=0&ads.aid=&ads.deviceMake=Web&ads.deviceIdType=localStorage&ads.deviceConnectionType=2&ads.deviceCategory=web&ads.client_ip=149.50.211.155&ads.geo=SG&ads.lat=1.32540&ads.long=103.74330&ads.dma=&ads.geoType=2&ads.contentid=22886&ads.content_duration=18000&ads.episode_id=78921&ads.show_id=3120&ads.showCategories=IAB12&ads.episodeCategories=IAB12&ads.genre=News%2CGlobal%20News%2CAfrican&ads.showRating=TV-PG&ads.episodeRating=TV-PG&ads.language=en&ads.showtitle=Africanews&ads.episodetitle=Africanews&ads.keywords=Africa%2CNews%2CAfricanews%2Cafrican&ads.contenturl=https%3A%2F%2Fwww.distro.tv%2Flive%2Feuronews%2F&ads.gdprConsent=&ads.paln=&ads.tagname=dtv&ads.islive=1&ads.streamtype=live&ads.vf=aZmxT9-Y_lC",
         logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Africanews._alternative_logo_2016.png/250px-Africanews._alternative_logo_2016.png",
         category: "News",
         Rating: "N/A",
@@ -967,7 +1049,7 @@ const channels = [
       {
         name: "ROI tv",
         type: "m3u8",
-        streamUrl: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/roi-tv/master.m3u8",
+        streamUrl: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/roi-tv/master.m3u8?ads.dpname=distrotv&ads.rnd=hhq7&ads.env_i=299d98ec-8a9e-4aa2-a199-9dc0f6398223&ads.env_u=&ads.name=DistroTV&ads.bundle=&ads.storeurl=&ads.appCategory=entertainment&ads.app_version=202105131041&ads.width=320&ads.height=180&ads.deviceId=&ads.deviceDNT=0&ads.gdpr=0&ads.us_privacy=0&ads.aid=&ads.deviceMake=Web&ads.deviceIdType=localStorage&ads.deviceConnectionType=2&ads.deviceCategory=web&ads.client_ip=149.50.211.155&ads.geo=SG&ads.lat=1.32540&ads.long=103.74330&ads.dma=&ads.geoType=2&ads.contentid=23040&ads.content_duration=18000&ads.episode_id=78616&ads.show_id=3091&ads.showCategories=IAB13&ads.episodeCategories=IAB13&ads.genre=Finance%2CBusiness%2CFactual%2CTalk%20Show%2CEnglish&ads.showRating=TV-PG&ads.episodeRating=TV-PG&ads.language=en&ads.showtitle=ROI%20TV&ads.episodetitle=ROI%20TV&ads.keywords=ROI%20TV%2CFinance&ads.contenturl=https%3A%2F%2Fwww.distro.tv%2Flive%2Feuronews%2F&ads.gdprConsent=&ads.paln=&ads.tagname=dtv&ads.islive=1&ads.streamtype=live&ads.vf=GKfWq-KmONW",
         logo: "https://a.jsrdn.com/hls/23040/roi-tv/logo_20231219_221615_68.png",
         category: "Business",
         Rating: "N/A",
@@ -976,7 +1058,7 @@ const channels = [
       {
         name: "Enterpreneur TV",
         type: "m3u8",
-        streamUrl: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/entrepreneur/master.m3u8",
+        streamUrl: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/entrepreneur/master.m3u8?ads.dpname=distrotv&ads.rnd=o83x&ads.env_i=40caa9db-4752-4b3a-8765-b453b33cafe4&ads.env_u=&ads.name=DistroTV&ads.bundle=&ads.storeurl=&ads.appCategory=entertainment&ads.app_version=202105131041&ads.width=320&ads.height=180&ads.deviceId=&ads.deviceDNT=0&ads.gdpr=0&ads.us_privacy=0&ads.aid=&ads.deviceMake=Web&ads.deviceIdType=localStorage&ads.deviceConnectionType=2&ads.deviceCategory=web&ads.client_ip=149.50.211.155&ads.geo=SG&ads.lat=1.32540&ads.long=103.74330&ads.dma=&ads.geoType=2&ads.contentid=22851&ads.content_duration=18000&ads.episode_id=33227&ads.show_id=1081&ads.showCategories=IAB3&ads.episodeCategories=IAB3&ads.genre=Business%2CFinance%2CReality%20TV%2CFactual%2CTalk%20Show%2CEnglish&ads.showRating=TV-G&ads.episodeRating=TV-G&ads.language=en&ads.showtitle=Entrepreneur&ads.episodetitle=Entrepreneur&ads.keywords=elevator%20pitch%2Centrepreneur&ads.contenturl=https%3A%2F%2Fwww.distro.tv%2Flive%2Feuronews%2F&ads.gdprConsent=&ads.paln=&ads.tagname=dtv&ads.islive=1&ads.streamtype=live&ads.vf=INEC_28piHm",
         logo: "https://cdn.worldvectorlogo.com/logos/entrepreneur.svg",
         category: "Business",
         Rating: "N/A",
@@ -985,7 +1067,7 @@ const channels = [
       {
         name: "CGTN biz",
         type: "m3u8",
-        streamUrl: "https://amg01314-amg01314c6-distrotv-us-10220.playouts.now.amagi.tv/playlist/amg01314-cgtn-cgtnglobalbiz-distrotvus/cb4d3e4f7b706f88cf9b3f6c83f144a1d1046180513ade346d8822ea2a8b4605d9edeec6f34bff70349e1ed57176340f182fdb51d67a6ec1da71b813727616709986b262c9ee475ae98710282ab27a1e50fe0f05a67c1177dfe60247d469e6375551ac0b3f0160dcb80dad6b0696d30a967e28ddadc0683a7c5e42960c58e6f25af7aee05916d966898b2219c16c5bb4ed028b8b48fed38119bc75bc428263f9ecfaa6e936d3d2d27dfa08ec200c56364295896f96da49a4df9b644bff1b4917443b8cc492fa5d728249572e9b95aaef3f8579a28821922e36ab10a741853d8f19c063cfc547b3b9a9d0767763d0ae3d6023b3abb68c895f59d534abf0bc8c212dc0ac64122ec869cb6c3b2a9ff9da66e7a974c6ec52efde68192b8e8246939cbb8d9dd3e72bcd7f86ad82993951006a0a14b94da38879d52ccf47acc11e20554336dff025cc92cd4e6a2d0082894dc00114f7cf9dd9a76451cb640814ec70d75a0869be5e0614e124ea8e2e639d3050fb5f51fa5c26ce4bfab913e1becbe07455dfb2cb4dfc6ee3861edde403ae68662868d9f3284c0b456edce77008421aa924b589b98b1d0804ffb9c4fad44a28024b72386fbce7e52ae3e4ae2819058f40327271111a821dc66cad66236422c008d6f6791ee307253ea8ae3c2f3c06f2e190a3d48cba2edc7ed7dcb33a202b4962cf506f473ee15fec338550eef1bd3cf06e1e21932b1829c490dded9c9262cf9260b94a137e01e0c5678d8dcf11196cbe857ad84ee7e96dd1091294ad9de433489628a613149fdd9e14903a0a002e7df2847f630ab9dc35d17b6def18d82789dc7492d63f624d6c111a90c83cfb2e59f745da56ca068d36b4bdfa25d16b90939c1673f28345233646741a6c46733e08b9d7ef726a5dc1b33def51eaea1afc0c0473777f8fd35b1eaae1790984756638f39f9ddff68a1106903fa02687304ae670082deac377b8d3e3a3aad63f0540ffbfb949bdae90ce9d8299682e790b5afeed565b62c05cb3e660cca20775e3858a9fb5489e67e733b49cf663a410a9c5a916ecf7b9fbe87c03514a5d9e98a71a75761dfeefdd1809b1ac2f8a9ca9935ed7be8ac90148/90/720x480_1241409/index.m3u8",
+        streamUrl: "https://amg01314-amg01314c6-distrotv-us-10220.playouts.now.amagi.tv/playlist/amg01314-cgtn-cgtnglobalbiz-distrotvus/playlist.m3u8?ads.dpname=distrotv&ads.app_domain=&ads.app_name=DistroTV&ads.app_store_url=&ads.coppa=0&ads.dnt=0&ads.c_producer=CGTN&ads.device_model=&ads.did=&ads.ifa_type=localStorage&ads.url=https%3A%2F%2Fwww.google.com%2F&ads.content_livestream=1&ads.ic=IAB3&ads.iu=&ads.idtype=Web&ads.lmt=&ads.gpp=&ads.gpp_sid=&ads.prodq=0&ads.inv_partner_domain=http%3A%2F%2Fdistro.tv&ads.schain=1&ads.islive=1&ads.streamtype=live&ads.vf=zhW0MpP7jy8",
         logo: "https://upload.wikimedia.org/wikipedia/commons/2/25/CGTN.png",
         category: "Business",
         Rating: "N/A",
