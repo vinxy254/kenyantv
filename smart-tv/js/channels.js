@@ -60,7 +60,7 @@ const channels = [
       {
         name: "Ebru Africa",
         type: "stream",
-        streamUrl: "https://embed.twitch.tv?autoplay=true&channel=ebrutvkenya&height=100%25&layout=video&parent=kenyantv.live&width=100%25&embed-chat=false",
+        streamUrl: "https://embed.twitch.tv?autoplay=true&channel=ebrutvkenya&height=100%25&layout=video&parent=istvkenya.live&width=100%25&embed-chat=false",
         logo: "images/ebru-tv-live.jpg",
         category: "National",
         Rating: "N/A",
@@ -141,7 +141,7 @@ const channels = [
       {
         name: "Horizon TV",
         type: "stream",
-        streamUrl: "https://player.twitch.tv/?channel=horizontvkenya&parent=kenyantv.live",
+        streamUrl: "https://player.twitch.tv/?channel=horizontvkenya&parent=istvkenya.live",
         logo: "images/horizon-tv-live.jpeg",
         category: "National",
         Rating: "N/A",
