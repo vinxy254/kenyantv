@@ -1,4 +1,4 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -30,7 +30,6 @@
       height: 100vh;
       overflow: hidden;
     }
-    /* Glossy Video Container */
     .video-container {
       position: fixed;
       top: 0;
@@ -47,13 +46,12 @@
       height: 100%;
       border: none;
     }
-    /* Channel Sidebar with Glassmorphism - Updated for two columns */
     .channel-sidebar {
       position: fixed;
-      left: -350px; /* Increased width */
+      left: -350px;
       top: 0;
       height: 100vh;
-      width: 350px; /* Increased width */
+      width: 350px;
       background: rgba(31, 31, 42, 0.7);
       backdrop-filter: blur(20px);
       transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -83,23 +81,27 @@
       z-index: 2;
       transition: all 0.3s ease;
       border: none;
+      cursor: pointer;
     }
-    
-    /* trigger the channel list to show */
     .sidebar-trigger:hover + .channel-sidebar,
     .channel-sidebar:hover {
       left: 0;
     }
-
-    /* Categories Side (Left) */
-    .categories-side {
+    /* Left panel: categories + contact us stacked */
+    .sidebar-left-panel {
       width: 120px;
       background: rgba(20, 20, 30, 0.9);
-      padding: 15px 0;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
       overflow-y: auto;
       border-right: 1px solid rgba(255, 255, 255, 0.1);
     }
-
+    .categories-side {
+      flex-shrink: 0;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
     .categories-side h3 {
       padding: 0 15px 10px 15px;
       font-size: 14px;
@@ -107,7 +109,58 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       margin-bottom: 10px;
     }
-
+    /* Contact Us Section - directly below categories */
+    .contact-us-section {
+      flex-shrink: 0;
+      padding: 15px 0 20px 0;
+      background: rgba(20, 20, 30, 0.9);
+    }
+    .contact-us-section h3 {
+      padding: 0 15px 10px 15px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 10px;
+    }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 10px;
+    }
+    .contact-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 8px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      font-size: 11px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-align: center;
+    }
+    .contact-link i {
+      font-size: 18px;
+      margin-bottom: 6px;
+      transition: transform 0.2s;
+    }
+    .contact-link .fab.fa-tiktok { color: #25F4EE; }
+    .contact-link .fab.fa-facebook { color: #1877F2; }
+    .contact-link .fas.fa-envelope { color: #ff6b6b; }
+    .contact-link:hover {
+      background: rgba(255, 107, 107, 0.2);
+      color: white;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .contact-link:hover i {
+      transform: scale(1.1);
+    }
     .category-item {
       padding: 12px 15px;
       cursor: pointer;
@@ -116,32 +169,26 @@
       color: rgba(255, 255, 255, 0.8);
       border-left: 3px solid transparent;
     }
-
     .category-item:hover {
       background: rgba(255, 255, 255, 0.1);
       color: white;
     }
-
     .category-item.active {
       background: rgba(255, 107, 107, 0.2);
       border-left: 3px solid var(--accent);
       color: white;
     }
-
     .category-item .category-name {
       display: block;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-
-    /* Channels Side (Right) */
     .channels-side {
       flex: 1;
       padding: 15px;
       overflow-y: auto;
     }
-
     .channels-side h3 {
       font-size: 14px;
       color: rgba(255, 255, 255, 0.7);
@@ -149,8 +196,6 @@
       padding-bottom: 10px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-
-    /* Channel Cards */
     .channel-card {
       display: flex;
       align-items: center;
@@ -164,12 +209,10 @@
       backdrop-filter: blur(2px);
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
-    
     .channel-card:hover {
       transform: translateX(5px);
       background: rgba(255, 255, 255, 0.15);
     }
-    
     .channel-card.active {
       border-left: 3px solid var(--accent);
       background: rgba(255, 107, 107, 0.15);
@@ -181,12 +224,10 @@
       object-fit: cover;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
-    
     .channel-info {
       flex: 1;
       min-width: 0;
     }
-    
     .channel-info h3 {
       font-size: 14px;
       margin-bottom: 2px;
@@ -197,7 +238,6 @@
       padding: 0;
       color: white;
     }
-    
     .channel-info p {
       font-size: 11px;
       color: rgba(255, 255, 255, 0.6);
@@ -205,117 +245,54 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-
     .channel-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 5px;
     }
-    
-    /* Ad Container Styles - Updated for responsiveness */
-   /* Ad Container Styles - Updated for responsiveness */
-#donationBanner {
-  position: fixed;
-  bottom: -150px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  transition: all 0.5s ease-in-out;
-  max-width: 600px;
-  width: 90%; /* Default width for mobile */
-  cursor: pointer;
-  visibility: hidden;
-  padding: 0;
-}
-
-#donationBanner.active {
-  bottom: 20px;
-  visibility: visible;
-}
-
-#donationBanner img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  display: block;
-}
-
-/* Mobile (default) - Smaller banner */
-@media (max-width: 767px) {
-  #donationBanner {
-    width: 85%;
-    max-width: 400px;
-  }
-  
-  #donationBanner img {
-    max-height: 120px; /* Smaller height for mobile */
-  }
-  
-  #closeBannerBtn {
-    top: 5px;
-    right: 5px;
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
-  }
-}
-
-
-
-/* Tablet - Medium banner */
-@media (min-width: 768px) and (max-width: 1023px) {
-  #donationBanner {
-    width: 75%;
-    max-width: 500px;
-  }
-  
-  #donationBanner img {
-    max-height: 150px;
-  }
-}
-
-/* Desktop and TV - Larger banner */
-@media (min-width: 1024px) {
-  #donationBanner {
-    width: 40%;
-    max-width: 800px; /* Larger max-width for big screens */
-  }
-  
-  #donationBanner img {
-    max-height: 180px; /* Taller banner for desktop/TV */
-  }
-  
-  #closeBannerBtn {
-    top: 15px;
-    right: 15px;
-    width: 30px;
-    height: 30px;
-    font-size: 16px;
-  }
-}
-    .banner-image-wrapper {
-      position: relative; /* Key: Creates a positioning context for the close button */
-      width: 100%;
+    #donationBanner {
+      position: fixed;
+      bottom: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      transition: all 0.5s ease-in-out;
+      max-width: 600px;
+      width: 90%;
+      cursor: pointer;
+      visibility: hidden;
+      padding: 0;
     }
-
     #donationBanner.active {
       bottom: 20px;
       visibility: visible;
     }
-
     #donationBanner img {
-      width: 100%; /* Image fills the wrapper */
-      height: auto; /* Maintain aspect ratio */
+      width: 100%;
+      height: auto;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      display: block; /* Remove extra space below the image */
+      display: block;
+    }
+    @media (max-width: 767px) {
+      #donationBanner { width: 85%; max-width: 400px; }
+      #donationBanner img { max-height: 120px; }
+      #closeBannerBtn { top: 5px; right: 5px; width: 20px; height: 20px; font-size: 12px; }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      #donationBanner { width: 75%; max-width: 500px; }
+      #donationBanner img { max-height: 150px; }
+    }
+    @media (min-width: 1024px) {
+      #donationBanner { width: 40%; max-width: 800px; }
+      #donationBanner img { max-height: 180px; }
+      #closeBannerBtn { top: 15px; right: 15px; width: 30px; height: 30px; font-size: 16px; }
     }
     #closeBannerBtn {
       position: absolute;
-      top: 10px; /* Distance from the top of the image */
-      right: 10px; /* Distance from the right of the image */
+      top: 10px;
+      right: 10px;
       background: rgba(0, 0, 0, 0.7);
       color: white;
       border: none;
@@ -327,47 +304,16 @@
       align-items: center;
       justify-content: center;
       font-size: 14px;
-      z-index: 1001; /* Ensure the button is above the image */
+      z-index: 1001;
     }
-
-    #closeBannerBtn:hover {
-      background: rgba(0, 0, 0, 0.9);
-    }
-    @media (max-width: 768px) {
-      #donationBanner img {
-        width: 75%; /* Larger image on mobile */
-        height: auto; /* Maintain aspect ratio */
-      }
-
-      #closeBannerBtn {
-        top: 0px; /* Distance from the top of the image */
-        right: 100px; /* Distance from the right of the image */
-      }
-    }
-
     .info-icon {
       margin-left: auto;
       color: yellow;
       text-decoration: none;
     }
-
-    .info-icon i {
-      font-size: 1.2rem;
-    }
-
-    .info-icon:hover {
-      color: #ff9900;
-    }
-
-    .channel-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-    
-    /* Floating Chat Button - Optimized */
-        #chatButton {
+    .info-icon i { font-size: 1.2rem; }
+    .info-icon:hover { color: #ff9900; }
+    #chatButton {
       position: fixed;
       bottom: 20px;
       right: 20px;
@@ -386,22 +332,10 @@
       align-items: center;
       transition: all 0.3s ease;
     }
-    
-    #chatButton:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
-    }
-    
-    #chatIcon {
-      display: block;
-    }
-    
-    #closeChatIcon {
-      display: none;
-    }
-    
-    /* Floating Chat Container - Optimized */
-   #chatContainer {
+    #chatButton:hover { transform: scale(1.1); }
+    #chatIcon { display: block; }
+    #closeChatIcon { display: none; }
+    #chatContainer {
       position: fixed;
       bottom: 90px;
       right: 20px;
@@ -413,24 +347,11 @@
       z-index: 1000;
       display: none;
       box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
-      opacity: 0.8; /* Initial transparency */
+      opacity: 0.8;
       transition: opacity 0.3s, transform 0.3s;
       transform: translateY(20px);
     }
-    
-    #chatContainer.active {
-      display: block;
-      transform: translateY(0);
-    }
-    
-    .chat-header {
-      display: none;
-    }
-    
-    .chat-controls {
-      display: flex;
-      gap: 5px;
-    }
+    #chatContainer.active { display: block; transform: translateY(0); }
     .iframe-wrapper {
       position: relative;
       width: 100%;
@@ -438,26 +359,6 @@
       overflow: hidden;
       border-radius: 15px;
     }
-    .chat-controls button {
-      background: rgba(255, 255, 255, 0.2);
-      border: none;
-      color: white;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: background 0.2s;
-    }
-    
-    .chat-controls button:hover {
-      background: rgba(255, 255, 255, 0.3);
-    }
-
-    
-        /* Add new styles for the floating controls */
     .chat-controls-floating {
       position: absolute;
       top: 10px;
@@ -468,11 +369,7 @@
       opacity: 0.3;
       transition: opacity 0.3s ease;
     }
-    
-    .chat-controls-floating:hover {
-      opacity: 1;
-    }
-    
+    .chat-controls-floating:hover { opacity: 1; }
     .chat-controls-floating button {
       background: rgba(0, 0, 0, 0.7);
       border: none;
@@ -482,19 +379,12 @@
       border-radius: 50%;
       cursor: pointer;
       display: flex;
-      justify-content: center;
       align-items: center;
-      transition: background 0.2s, transform 0.2s;
+      justify-content: center;
     }
-    
-    .chat-controls-floating button:hover {
-      background: rgba(0, 0, 0, 0.9);
-      transform: scale(1.1);
-    }
-    
     #chatIframe {
-      width: 133.33%;    /* 100% / 0.75 = 133.33% */
-      height: 133.33%;   /* 100% / 0.75 = 133.33% */
+      width: 133.33%;
+      height: 133.33%;
       transform: scale(0.75);
       transform-origin: top left;
       border: none;
@@ -502,16 +392,7 @@
       opacity: 0;
       transition: opacity 0.3s ease;
     }
-   #chatIframe.loaded {
-      opacity: 1;
-    }
-    
-    #chatIframe.loaded {
-      opacity: 1;
-    }
-    
-    /* Chat Loading Indicator */
-    /* Adjust loading indicator position */
+    #chatIframe.loaded { opacity: 1; }
     #chatLoading {
       position: absolute;
       top: 50%;
@@ -524,11 +405,7 @@
       gap: 10px;
       z-index: 10;
     }
-    
-    #chatLoading.hidden {
-      display: none;
-    }
-    
+    #chatLoading.hidden { display: none; }
     .loading-spinner {
       width: 40px;
       height: 40px;
@@ -537,13 +414,7 @@
       border-top-color: var(--accent);
       animation: spin 1s linear infinite;
     }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    /* Loading Animation */
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     #loading {
       position: fixed;
       top: 50%;
@@ -560,44 +431,11 @@
       align-items: center;
       gap: 10px;
     }
-    
-    #loading .spinner {
-      width: 24px;
-      height: 24px;
-      border: 3px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top-color: white;
-      animation: spin 1s linear infinite;
-    }
-    
-    /* Responsive adjustments */
     @media (max-width: 768px) {
-      #chatContainer {
-        width: 30%;
-        height: 80%;
-        right: 10px;
-        bottom: 80px;
-      }
-      
-      #chatButton {
-        right: 10px;
-        bottom: 10px;
-        width: 50px;
-        height: 50px;
-        font-size: 20px;
-      }
+      #chatContainer { width: 300px; height: 400px; right: 10px; bottom: 80px; }
+      #chatButton { right: 10px; bottom: 10px; width: 50px; height: 50px; }
     }
-
-
-
-    /*new video.js elements*/
-        #my-video {
-            width: 100%;
-            height: 100%;
-      display: block;
-        }
-
-    /* persistent external iframe used for YouTube/other embeds */
+    #my-video { width: 100%; height: 100%; display: block; }
     .external-iframe {
       position: absolute;
       top: 0;
@@ -608,99 +446,72 @@
       background: transparent;
       z-index: 1;
     }
-        
-        /* Blue screen overlay for errors */
-        .blue-screen {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0000FF;
-            display: none;
-            z-index: 100;
-        }
-        
-        /* Bouncing text for blue screen */
-        .bouncing-text {
-            position: absolute;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            line-height: 1.4;
-            user-select: none;
-        }
-        
-        /* Simple channel display */
-        .channel-display {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: #FF0000;
-            font-size: 28px;
-            font-weight: bold;
-            z-index: 101;
-            display: none;
-        }
-
-
-
-              /* Close button for sidebar */
-        .sidebar-close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(255, 107, 107, 0.8);
-            color: white;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            z-index: 4;
-            transition: all 0.3s ease;
-            opacity: 0.7;
-        }
-
-        .sidebar-close-btn:hover {
-            background: rgba(255, 107, 107, 1);
-            opacity: 1;
-            transform: scale(1.1);
-        }
-
-        /* Adjust categories side padding to account for close button */
-        .categories-side {
-            padding-top: 40px; /* Make room for close button */
-        }
-
-        /* Make sure the trigger button doesn't interfere */
-        .sidebar-trigger:hover + .channel-sidebar,
-        .channel-sidebar:hover {
-            left: 0;
-        }
-
-        /* When sidebar is manually closed via button, keep it closed until trigger is hovered again */
-        .channel-sidebar.closed {
-            left: -350px !important;
-        }
+    .blue-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0000FF;
+      display: none;
+      z-index: 100;
+    }
+    .bouncing-text {
+      position: absolute;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      user-select: none;
+    }
+    .channel-display {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: #FF0000;
+      font-size: 28px;
+      font-weight: bold;
+      z-index: 101;
+      display: none;
+    }
+    .sidebar-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 107, 107, 0.8);
+      color: white;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      z-index: 4;
+      transition: all 0.3s ease;
+      opacity: 0.7;
+    }
+    .sidebar-close-btn:hover {
+      background: rgba(255, 107, 107, 1);
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    .sidebar-left-panel {
+      padding-top: 40px;
+    }
+    .channel-sidebar.closed { left: -350px !important; }
   </style>
 </head>
 <body>
  <h1 style="position: absolute; left: -9999px; top: -9999px;">Kenya Live TV: Watch live TV channels online</h1>
-  <!-- Loading Element -->
   <div id="loading" style="display: none;">
     <div class="spinner"></div>
     <span>Initializing Player...</span>
   </div>
 
-
-  <!-- Floating Chat Elements - Optimized -->
   <button id="chatButton" title="Show Live Chat">
     <i id="chatIcon" class="fas fa-comments"></i>
     <i id="closeChatIcon" class="fas fa-times"></i>
@@ -717,59 +528,67 @@
         <div class="loading-spinner"></div>
         <p>Connecting to chat...</p>
       </div>
-      <iframe id="chatIframe" 
-        allowtransparency="true"
-        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-        referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
+      <iframe id="chatIframe" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups allow-forms" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
-  
-
 
   <div class="sidebar-trigger">CHANNELS</div>
   <aside class="channel-sidebar" id="channelList">
     <button class="sidebar-close-btn" id="closeSidebar" title="Close Sidebar">
-        <i class="fas fa-times"></i>
+      <i class="fas fa-times"></i>
     </button>
-    <div class="categories-side" id="categoriesSide">
-      <h3>CATEGORIES</h3>
-      <!-- Categories will be populated by JavaScript -->
+
+    <!-- Left panel: categories + contact us stacked (categories first, contact us directly after) -->
+   
+    <div class="sidebar-left-panel" id="sidebarLeftPanel">
+      <div class="categories-side" id="categoriesSide">
+        <h3>CATEGORIES</h3>
+
+        <!-- Categories populated via JS -->
+
+      </div>
+      <div class="contact-us-section" id="contactUsSection">
+        <h3>CONTACT US</h3>
+        <div class="contact-links">
+          <a href="mailto:info@songatechnologies.co.ke" class="contact-link" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-envelope"></i>
+            <span>Email Us</span>
+          </a>
+          <a href="https://www.tiktok.com/@istv_ke" class="contact-link" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-tiktok"></i>
+            <span>TikTok</span>
+          </a>
+          <a href="https://wa.me/+254757090266" class="contact-link" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i>
+            <span>Whatsapp</span>
+          </a>
+          <h3>Terms and conditions apply</h3>
+        </div>
+      </div>
     </div>
     <div class="channels-side" id="channelsSide">
       <h3>ALL CHANNELS</h3>
-      <!-- Channels will be populated by JavaScript based on selected category -->
     </div>
   </aside>
 
   <div id="donationBanner" onclick="donateNow()">
-    <img src="../mchange.jpg" 
-         alt="Support our service - Donate Now">
+    <img src="../mchange.jpg" alt="Support our service - Donate Now">
     <button id="closeBannerBtn">&times;</button>
   </div>
 
-
-    <!-- Video.js Player (combined player container - hosts iframe or Video.js) -->
-    <div id="player" class="video-container">
-        <video id="my-video" class="video-js" controls preload="auto" data-setup='{}'>
-            <p class="vjs-no-js">
-                Please enable JavaScript to watch this video.
-            </p>
-        </video>
-        
-        <!-- Blue screen overlay -->
-        <div class="blue-screen" id="blue-screen">
-            <div class="bouncing-text" id="bouncing-text">No signal unsupported<br>or broken broadcast link</div>
-        </div>
-        
-        <!-- Channel display -->
-        <div class="channel-display" id="channel-display"></div>
+  <div id="player" class="video-container">
+    <video id="my-video" class="video-js" controls preload="auto" data-setup='{}'>
+      <p class="vjs-no-js">Please enable JavaScript to watch this video.</p>
+    </video>
+    <div class="blue-screen" id="blue-screen">
+      <div class="bouncing-text" id="bouncing-text">No signal unsupported<br>or broken broadcast link</div>
     </div>
+    <div class="channel-display" id="channel-display"></div>
+  </div>
 
-    <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@videojs/http-streaming@3.0.2/dist/videojs-http-streaming.min.js"></script>
-    <script src="smart-tv/js/channels.js"></script>
-
+  <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@videojs/http-streaming@3.0.2/dist/videojs-http-streaming.min.js"></script>
+  <script src="smart-tv/js/channels.js"></script>
   <script>
     // Channel Configuration - Updated with categories
 
@@ -1594,3 +1413,4 @@
   </script>
 </body>
 </html>
+
