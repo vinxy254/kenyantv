@@ -26,6 +26,24 @@ function hideBlueScreen() {
     blueScreen.style.display = 'none';
 }
 
+
+// Destroy YouTube player and remove iframe
+function destroyYouTubePlayer() {
+    if (ytPlayer) {
+        try {
+            ytPlayer.destroy();
+        } catch (e) {
+            console.warn('Error destroying YT player:', e);
+        }
+        ytPlayer = null;
+    }
+    const ytIframe = document.getElementById('youtube-api-iframe');
+    if (ytIframe) {
+        ytIframe.remove();
+    }
+}
+
+
 // Load channel
 function loadChannel(channelData) {
     if (channelData.type === "youtube") {
@@ -143,6 +161,9 @@ function stopIframePlayback() {
 
 // Load external stream (YouTube, etc.)
 function loadExternalStream(url) {
+    destroyYouTubePlayer();   // ✅ Clean up YouTube before HLS
+
+
     hideBlueScreen();
     const playerContainer = document.getElementById("player");
     const videoEl = document.getElementById('my-video');
@@ -174,6 +195,9 @@ function loadExternalStream(url) {
 
 // Play HLS stream
 function playHLSStream(url, channelName) {
+    destroyYouTubePlayer();   // ✅ Clean up YouTube before HLS
+
+
     hideBlueScreen();
     const playerContainer = document.getElementById("player");
     const videoEl = document.getElementById('my-video');
