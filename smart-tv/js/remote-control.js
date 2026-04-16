@@ -185,11 +185,25 @@ function handleKeyPress(event) {
   switch(event.keyCode) {
     case KEY_ENTER:
       event.preventDefault();
-      if (sidebarOpen) {
-        selectItem();
-      } else {
-        openSidebar();
+      // if (sidebarOpen) {
+      //   selectItem();
+      // } else {
+      //   openSidebar();
+      // }
+      const state = ytPlayer.getPlayerState();
+      if (state === YT.PlayerState.PLAYING && !sidebarOpen) {
+        ytPlayer.pauseVideo();
       }
+      if (state === YT.PlayerState.PAUSED && !sidebarOpen) {
+        ytPlayer.playVideo();
+      }
+      if (sidebarOpen){
+        selectItem();
+      }
+      
+      // else {
+      //           ytPlayer.playVideo();
+      //       }
       break;
       
     case KEY_ESC:
@@ -246,4 +260,4 @@ window.remoteControl = {
   navigateRight,
   selectItem,
   updateFocusUI
-};
+}
