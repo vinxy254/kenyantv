@@ -15,6 +15,25 @@ const KEY_RIGHT = 39;
 const KEY_DOWN = 40;
 const KEY_SPACE = 32;
 
+// Check if YouTube player is currently active
+function isYouTubePlayerActive() {
+    const iframe = document.querySelector('.external-iframe');
+    const videoEl = document.getElementById('my-video');
+    
+    // YouTube player is active if:
+    // 1. An iframe exists with youtube.com URL
+    // 2. The iframe is visible (not hidden)
+    // 3. The video.js element is hidden
+    if (iframe && 
+        iframe.src.includes('youtube.com') && 
+        iframe.style.display !== 'none' &&
+        videoEl && 
+        videoEl.style.display === 'none') {
+        return true;
+    }
+    return false;
+}
+
 // Show remote status
 function showRemoteStatus(message) {
   const statusEl = document.getElementById('remoteStatus');
@@ -185,25 +204,25 @@ function handleKeyPress(event) {
   switch(event.keyCode) {
     case KEY_ENTER:
       event.preventDefault();
-      // if (sidebarOpen) {
-      //   selectItem();
-      // } else {
-      //   openSidebar();
-      // }
-      const state = ytPlayer.getPlayerState();
-      if (state === YT.PlayerState.PLAYING && !sidebarOpen) {
-        ytPlayer.pauseVideo();
-      }
-      if (state === YT.PlayerState.PAUSED && !sidebarOpen) {
-        ytPlayer.playVideo();
-      }
-      if (sidebarOpen){
+      if (sidebarOpen) {
         selectItem();
+        console.log('Selected item with Enter key');
+      } else if (isYouTubePlayerActive()) {
+        // Handle YouTube player play/pause only if YouTube is active
+        const state = ytPlayer.getPlayerState();
+        if (state === YT.PlayerState.PLAYING) {
+          ytPlayer.pauseVideo();
+          console.log('Paused YouTube video with Enter key');
+        } else if (state === YT.PlayerState.PAUSED) {
+          ytPlayer.playVideo();
+          console.log('Playing YouTube video with Enter key');
+        }
       }
-      
       // else {
-      //           ytPlayer.playVideo();
-      //       }
+      //   // If no YouTube player, use Enter to open sidebar
+      //   openSidebar();
+      //   console.log('Opened sidebar with Enter key');
+      // }
       break;
       
     case KEY_ESC:
