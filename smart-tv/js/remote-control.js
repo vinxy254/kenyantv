@@ -34,6 +34,22 @@ function isYouTubePlayerActive() {
     return false;
 }
 
+// Check if HLS player is currently active
+function isHLSPlayerActive() {
+    const videoEl = document.getElementById('my-video');
+    
+    // HLS player is active if:
+    // 1. The video.js element exists
+    // 2. The video element is visible (not hidden)
+    // 3. No YouTube iframe is active
+    if (videoEl && 
+        videoEl.style.display !== 'none' &&
+        !isYouTubePlayerActive()) {
+        return true;
+    }
+    return false;
+}
+
 // Show remote status
 function showRemoteStatus(message) {
   const statusEl = document.getElementById('remoteStatus');
@@ -212,10 +228,25 @@ function handleKeyPress(event) {
         const state = ytPlayer.getPlayerState();
         if (state === YT.PlayerState.PLAYING) {
           ytPlayer.pauseVideo();
+          //showRemoteStatus('Paused');
           console.log('Paused YouTube video with Enter key');
         } else if (state === YT.PlayerState.PAUSED) {
           ytPlayer.playVideo();
+          //showRemoteStatus('Playing');
           console.log('Playing YouTube video with Enter key');
+        }
+      } else if (isHLSPlayerActive()) {
+        // Handle HLS player play/pause if HLS is active
+        if (player && typeof player.paused === 'function') {
+          if (player.paused()) {
+            player.play();
+            //showRemoteStatus('Playing');
+            console.log('Playing HLS video with Enter key');
+          } else {
+            player.pause();
+            //showRemoteStatus('Paused');
+            console.log('Paused HLS video with Enter key');
+          }
         }
       }
       // else {
