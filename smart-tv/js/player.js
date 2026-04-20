@@ -2,7 +2,7 @@
 
 // YouTube helper functions
 function getYouTubeEmbedUrl(channelId) {
-    return `https://www.youtube.com/embed/live_stream?channel=${channelId}&autoplay=1&mute=1&rel=0&showinfo=0&enablejsapi=1&controls=1&disablekb=1&modestbranding=1`;
+    return `https://www.youtube.com/embed/live_stream?channel=${channelId}&autoplay=1&mute=1&rel=0&showinfo=0&enablejsapi=1&controls=1&disablekb=1&modestbranding=1&origin=https://istvkenya.live`;
 }
 
 // YouTube iframe API control
