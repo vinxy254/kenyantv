@@ -227,12 +227,12 @@ function handleKeyPress(event) {
         // Handle YouTube player play/pause only if YouTube is active
         const state = ytPlayer.getPlayerState();
         if (state === YT.PlayerState.PLAYING) {
-          ytPlayer.pauseVideo();
+         // ytPlayer.pauseVideo();
           ytPlayer.unMute();
           //showRemoteStatus('Paused');
           console.log('Paused YouTube video with Enter key');
         } else if (state === YT.PlayerState.PAUSED) {
-          ytPlayer.playVideo();
+          //ytPlayer.playVideo();
           ytPlayer.unMute();
           //showRemoteStatus('Playing');
           console.log('Playing YouTube video with Enter key');
