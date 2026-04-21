@@ -228,7 +228,7 @@ function handleKeyPress(event) {
         const state = ytPlayer.getPlayerState();
         if (state === YT.PlayerState.PLAYING) {
          // ytPlayer.pauseVideo();
-          ytPlayer.unMute();
+          ytPlayer.setVolume(80);
           console.log("unmute called above");
           //showRemoteStatus('Paused');
           console.log('Paused YouTube video with Enter key');
