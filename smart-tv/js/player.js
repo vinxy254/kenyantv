@@ -2,7 +2,7 @@
 
 // YouTube helper functions
 function getYouTubeEmbedUrl(channelId) {
-    return `https://www.youtube.com/embed/live_stream?channel=${channelId}&autoplay=1&mute=1&rel=0&showinfo=0&enablejsapi=1&controls=1&disablekb=1&modestbranding=1&origin=https://istvkenya.live`;
+    return `https://www.youtube.com/embed/live_stream?channel=${channelId}&autoplay=1&rel=0&showinfo=0&enablejsapi=1&controls=0&disablekb=1`;
 }
 
 // YouTube iframe API control
@@ -67,6 +67,64 @@ function loadChannel(channelData) {
     currentChannel = channelData;
 }
 
+// // Load YouTube live stream by channel ID
+// function loadYouTubeLive(channelId) {
+//     const embedUrl = getYouTubeEmbedUrl(channelId);
+//     const playerContainer = document.getElementById("player");
+//     const videoEl = document.getElementById('my-video');
+
+//     // Stop any HLS instance and video playback
+//     hideBlueScreen();
+//     if (hls) {
+//         try { hls.destroy(); } catch (e) { console.warn('Error destroying HLS instance', e); }
+//         hls = null;
+//     }
+//     try { player.pause(); } catch (e) { /* ignore */ }
+//     try { if (player.currentTime) player.currentTime(0); } catch (e) { }
+
+//     // Hide the Video.js element
+//     if (videoEl) videoEl.style.display = 'none';
+
+//     // Stop any existing iframe playback before reusing
+//     stopIframePlayback();
+
+//     // --- YouTube IFrame API integration ---
+//     // Remove any old iframe to avoid multiple API bindings
+//     const oldIframe = playerContainer.querySelector('.external-iframe');
+//     if (oldIframe) oldIframe.remove();
+
+//     // Create fresh iframe with API‑ready src
+//     const iframe = document.createElement('iframe');
+//     iframe.id = 'youtube-api-iframe'; // fixed ID for API binding
+//     iframe.className = 'external-iframe';
+//     iframe.width = '100%';
+//     iframe.height = '100%';
+//     //iframe.frameBorder = '0';
+//     iframe.allow = 'autoplay; encrypted-media';
+//     iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+//     iframe.allowFullscreen = true;
+//     iframe.style.width = '100%';
+//     iframe.style.height = '100%';
+//     iframe.style.border = '0';
+//     iframe.src = embedUrl;
+//     iframe.style.display = 'block';
+//     playerContainer.appendChild(iframe);
+
+//     // If IFrame API is already loaded, create player immediately
+//     if (window.YT && YT.Player) {
+//         initializeYTPlayer();
+//     } else {
+//         // If API script hasn't finished loading, wait for global callback
+//         window.onYouTubeIframeAPIReady = initializeYTPlayer;
+//     }
+// }
+
+
+
+
+
+
+
 // Load YouTube live stream by channel ID
 function loadYouTubeLive(channelId) {
     const embedUrl = getYouTubeEmbedUrl(channelId);
@@ -93,31 +151,81 @@ function loadYouTubeLive(channelId) {
     const oldIframe = playerContainer.querySelector('.external-iframe');
     if (oldIframe) oldIframe.remove();
 
-    // Create fresh iframe with API‑ready src
-    const iframe = document.createElement('iframe');
-    iframe.id = 'youtube-api-iframe'; // fixed ID for API binding
-    iframe.className = 'external-iframe';
-    iframe.width = '100%';
-    iframe.height = '100%';
-    iframe.frameBorder = '0';
-    iframe.allow = 'autoplay; encrypted-media';
-    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-    iframe.allowFullscreen = true;
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    iframe.style.border = '0';
-    iframe.src = embedUrl;
-    iframe.style.display = 'block';
-    playerContainer.appendChild(iframe);
+    // Remove any previously existing play button image (if calling again)
+    const oldImage = playerContainer.querySelector('#play-video-image');
+    if (oldImage) oldImage.remove();
 
-    // If IFrame API is already loaded, create player immediately
-    if (window.YT && YT.Player) {
-        initializeYTPlayer();
-    } else {
-        // If API script hasn't finished loading, wait for global callback
-        window.onYouTubeIframeAPIReady = initializeYTPlayer;
-    }
+    // Instead of creating the iframe directly, show a clickable image
+    const playImage = document.createElement('img');
+    playImage.id = 'play-video-image';
+    playImage.src = 'youtube-live-banner.png';
+    playImage.alt = 'Click to play live stream';
+    playImage.style.cursor = 'pointer';
+    playImage.style.width = '100%';
+    playImage.style.height = 'auto';
+    playImage.tabIndex = 0; // Make image focusable
+    playImage.style.outline = 'none'; // Optional: remove default outline
+
+    playerContainer.appendChild(playImage);
+
+    // Focus on the image for remote control interaction
+    playImage.focus();
+
+    // User clicks the image → load the iframe with autoplay unmuted
+    const clickHandler = function() {
+        // Remove the image and listener
+        playImage.removeEventListener('click', clickHandler);
+        playImage.remove();
+
+        // Build autoplay URL
+        const separator = embedUrl.includes('?') ? '&' : '?';
+        const autoplayUrl = embedUrl + separator + 'autoplay=1&mute=0';
+
+        // Create the iframe
+        const iframe = document.createElement('iframe');
+        iframe.id = 'youtube-api-iframe';
+        iframe.className = 'external-iframe';
+        iframe.width = '100%';
+        iframe.height = '100%';
+        iframe.allow = 'autoplay; encrypted-media';
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        iframe.allowFullscreen = true;
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = '0';
+        iframe.src = autoplayUrl;
+        iframe.style.display = 'block';
+        playerContainer.appendChild(iframe);
+
+        // Initialize the YouTube IFrame API player
+        if (window.YT && YT.Player) {
+            initializeYTPlayer();
+        } else {
+            window.onYouTubeIframeAPIReady = initializeYTPlayer;
+        }
+    };
+
+    playImage.addEventListener('click', clickHandler);
+    // Also handle Enter/Space key for remote control
+    playImage.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            clickHandler();
+        }
+    });
 }
+
+function onYTReady(event) {
+    console.log('✅ YouTube IFrame API ready');
+    // Shift focus back to document body to enable remote control functions
+    document.body.focus();
+}
+
+
+
+
+
+
 
 
 function initializeYTPlayer() {
