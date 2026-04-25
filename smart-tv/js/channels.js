@@ -78,7 +78,7 @@ const channels = [
       {
         name: "Inooro TV",
         type: "m3u8",
-        streamUrl: "https://stream-74937.castr.net/5ea49827ff3b5d7b22708777/live_6382dd401ce311f097d41d161154da2f/index.m3u8",
+        streamUrl: "https://live-onesignal.royalmedia.co.ke/live/T-MxRsFebq6zx7k2QFMbLw.m3u8",
         logo: "https://keonline.eu-central-1.linodeobjects.com/uploads/logo/nf0fohGccEB5orpXeraqamkEo3Q8sNPrYWtGvIaW.jpg",
         category: "Local",
         Rating: "N/A",
@@ -86,8 +86,8 @@ const channels = [
       },
       {
         name: "Ramogi TV",
-        type: "stream",
-        streamUrl: "https://player.castr.com/live_9b761ff063f511eca12909b8ef1524b4?autoplay=1&mute=0&enablejsapi=1&rel=0&showinfo=0&mute=0",
+        type: "m3u8",
+        streamUrl: "https://live-onesignal.royalmedia.co.ke/live/-gEXRHc6nSl5aFegh5MrOg.m3u8",
         logo: "https://kenyalivetv.co.ke/uploads/tv/3_icon_ramogitv.webp",
         category: "Local",
         Rating: "N/A",
@@ -267,19 +267,19 @@ const channels = [
         infoPage: "N/A"
       },
        
-      {
-        name: "TVS music",
-        type: "m3u8",
-        streamUrl: "https://rpn.bozztv.com/gusa/gusa-tvsmusic/index.m3u8",
-        logo: "https://5.imimg.com/data5/SELLER/Default/2021/7/FS/OR/YA/89210578/music-tv-channel-broadcast-solutions.jpg",
-        category: "Music",
-        Rating: "GE",
-        infoPage: "N/A"
-      }, 
+      // {
+      //   name: "TVS music",
+      //   type: "m3u8",
+      //   streamUrl: "https://rpn.bozztv.com/gusa/gusa-tvsmusic/index.m3u8",
+      //   logo: "https://5.imimg.com/data5/SELLER/Default/2021/7/FS/OR/YA/89210578/music-tv-channel-broadcast-solutions.jpg",
+      //   category: "Music",
+      //   Rating: "GE",
+      //   infoPage: "N/A"
+      // }, 
       {
         name: "BeIN sports xtra",
         type: "m3u8",
-        streamUrl: "https://bein-beinxtrasports-firetv.amagi.tv/playlist.m3u8",
+        streamUrl: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/outsidetv/playlist.m3u8",
         logo: "https://dj7fdt04hl8tv.cloudfront.net/acm/media/shop/mar/bein-sports.png",
         category: "Sports",
         Rating: "GE",
@@ -321,51 +321,51 @@ const channels = [
         Rating: "GE",
         infoPage: "N/A"
       },
-      {
-        name: "National Geographic",
-        type: "m3u8",
-        streamUrl: "https://fl1.moveonjoy.com/National_Geographic/index.m3u8",
-        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVNmQpa8NPoHlt0qllQrNCmEALB2bPFJRZRA&s",
-        category: "Entertainment",
-        Rating: "GE",
-        infoPage: "N/A"
-      },
-      {
-        name: "Nat Geo Wild",
-        type: "m3u8",
-        streamUrl: "https%3a//fl1.moveonjoy.com/Nat_Geo_Wild/index.m3u8",
-        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVNmQpa8NPoHlt0qllQrNCmEALB2bPFJRZRA&s",
-        category: "Entertainment",
-        Rating: "GE",
-        infoPage: "N/A"
-      },
-        {
-        name: "Paramount",
-        type: "m3u8",
-        streamUrl: "https://fl1.moveonjoy.com/PARAMOUNT_NETWORK/index.m3u8",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Paramount_Pictures_2022_%28Blue%29.svg/960px-Paramount_Pictures_2022_%28Blue%29.svg.png",
-        category: "Entertainment",
-        Rating: "GE",
-        infoPage: "N/A"
-      },
+      // {
+      //   name: "National Geographic",
+      //   type: "m3u8",
+      //   streamUrl: "https://fl1.moveonjoy.com/National_Geographic/index.m3u8",
+      //   logo: "https://cdn.iconscout.com/icon/free/png-256/free-national-geographic-logo-icon-download-in-svg-png-gif-file-formats--major-websites-set-pack-logos-icons-461820.png?f=webp",
+      //   category: "Entertainment",
+      //   Rating: "GE",
+      //   infoPage: "N/A"
+      // },
+      // {
+      //   name: "Nat Geo Wild",
+      //   type: "m3u8",
+      //   streamUrl: "https%3a//fl1.moveonjoy.com/Nat_Geo_Wild/index.m3u8",
+      //   logo: "https://cdn.iconscout.com/icon/free/png-256/free-national-geographic-logo-icon-download-in-svg-png-gif-file-formats--major-websites-set-pack-logos-icons-461820.png?f=webp",
+      //   category: "Entertainment",
+      //   Rating: "GE",
+      //   infoPage: "N/A"
+      // },
+      //   {
+      //   name: "Paramount",
+      //   type: "m3u8",
+      //   streamUrl: "https://fl1.moveonjoy.com/PARAMOUNT_NETWORK/index.m3u8",
+      //   logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Paramount_Pictures_2022_%28Blue%29.svg/960px-Paramount_Pictures_2022_%28Blue%29.svg.png",
+      //   category: "Entertainment",
+      //   Rating: "GE",
+      //   infoPage: "N/A"
+      // },
       {
         name: "Just for Laughs",
         type: "m3u8",
-        streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-64704954e536e0faaf10be9f.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=smLAakyp6S3j3-xV84Vo",
+        streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-64704954e536e0faaf10be9f.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=LAFEX-2H3CTesgXG3-jG",
         logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVNmQpa8NPoHlt0qllQrNCmEALB2bPFJRZRA&s",
         category: "Entertainment",
         Rating: "GE",
         infoPage: "N/A"
       },
-      {
-        name: "LOL network",
-        type: "m3u8",
-        streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-61e805952502a7a6fa84d70f.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=smLAakyp6S3j3-xV84Vo",
-        logo: "https://yt3.googleusercontent.com/wfugK-_Y4Hr89XKEAOEi2wiK8sRfqz4xvj2B_N7xEcFyiuBmcrM7519oFOnyM7aUpnXUyi5t-w=s900-c-k-c0x00ffffff-no-rj",
-        category: "Entertainment",
-        Rating: "GE",
-        infoPage: "N/A"
-      },
+      // {
+      //   name: "LOL network",
+      //   type: "m3u8",
+      //   streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-61e805952502a7a6fa84d70f.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=smLAakyp6S3j3-xV84Vo",
+      //   logo: "https://yt3.googleusercontent.com/wfugK-_Y4Hr89XKEAOEi2wiK8sRfqz4xvj2B_N7xEcFyiuBmcrM7519oFOnyM7aUpnXUyi5t-w=s900-c-k-c0x00ffffff-no-rj",
+      //   category: "Entertainment",
+      //   Rating: "GE",
+      //   infoPage: "N/A"
+      // },
       {
         name: "LOL standup",
         type: "stream",
@@ -387,7 +387,7 @@ const channels = [
       {
         name: "popular science",
         type: "m3u8",
-        streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-656fb850cb7e8e6a9bc3f36e.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=smLAakyp6S3j3-xV84Vo",
+        streamUrl: "https://amg13231-actve-amg13231c5-sportstribal-emea-1269.playouts.now.amagi.tv/playlist/amg13231-actvefast-powder-sportstribalemea/playlist.m3u8",
         logo: "https://static.wikia.nocookie.net/logopedia/images/f/f6/Science_2017.svg/revision/latest/scale-to-width-down/250?cb=20240724210548",
         category: "Lifestyle",
         Rating: "N/A",
@@ -405,7 +405,7 @@ const channels = [
       {
         name: "Motorsport TV",
         type: "m3u8",
-        streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-6408c82eebb23ab878e8ddbb.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=kqz-_pzPUsowvS7tRYNS",
+        streamUrl: "https://amg02873-kravemedia-mtrspt1-sportstribal-ajosc.amagi.tv/ts-us-w2-n1/playlist/amg02873-kravemedia-mtrspt1-sportstribal/f5aac735-40b7-11f1-aba5-ce11c2d1f773/0/640x360_1020588/index.m3u8",
         logo: "https://w7.pngwing.com/pngs/695/799/png-transparent-motors-tv-television-channel-motorsport-auto-racing-others.png",
         category: "Sports",
         Rating: "N/A",
@@ -456,24 +456,24 @@ const channels = [
         Rating: "N/A",
         infoPage: "N/A"
       },
-      {
-        name: "CW",
-        type: "m3u8",
-        streamUrl: "https://cvtv.cvalley.net/hls/KCWECW/KCWECW.m3u8",
-        logo: "https://streamingbetter.com/wp-content/uploads/2024/01/The-CW-new-logo-1200x675.jpg",
-        category: "Entertainment",
-        Rating: "N/A",
-        infoPage: "N/A"
-      },
-      {
-        name: "Miramax movies",
-        type: "m3u8",
-        streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-661fca34414d94009d1206ec/variant.m3u8?x-plex-token=smLAakyp6S3j3-xV84Vo&x-plex-advertising-identifier=&x-plex-client-identifier=724c6121-eadf-4ae2-8ab0-3026d3c7c164&x-plex-playback-id=p_11bd71fe-d16b-4169-a5cb-6c9337323817&x-plex-playback-session-id=&x-plex-session-id=&x-plex-device=Linux&x-plex-device-name=Plex+Mediaverse&x-plex-advertising-donottrack=1&x-plex-drm=&x-plex-model=&x-plex-platform=Firefox&x-plex-platform-version=134.0&x-plex-product=Plex+Mediaverse&x-plex-device-screen-resolution=&x-plex-device-vendor=&x-plex-version=&x-plex-provider-streaming-start=1759323258&url=c4ba6dc2d30047b6f3655d98c0377b4c-47c0f35a49d7ecb0e598de5af0980bf7997eb3d5b6cb5f0e9e79f80eabe0194c830bfe908809b70b3387d073a2701ab3e2f12342c912fd09e3d8869a398f9e51ae4799e4b318dbdaf2fccca8b638429d815e849bf3b799c909abd34d14e34016daa09ade0c9c9ac17651eb98c2c686426f37d5c592ccaff8ed4db56fe80b114a25918bda83af9a4d3d2f70c0e9bb2b682ac8bef67608b9ce5a836753a06c186ab7a2f48f4b596da2b3c7c9700819ff8c68b58892bfad4ece0846d86d962f304ddc72736196ee7d839959423e3dd3b2a4",
-        logo: "https://variety.com/wp-content/uploads/2023/11/TH_Miramax.jpg",
-        category: "Movies",
-        Rating: "N/A",
-        infoPage: "N/A"
-      },
+      // {
+      //   name: "CW",
+      //   type: "m3u8",
+      //   streamUrl: "https://cvtv.cvalley.net/hls/KCWECW/KCWECW.m3u8",
+      //   logo: "https://streamingbetter.com/wp-content/uploads/2024/01/The-CW-new-logo-1200x675.jpg",
+      //   category: "Entertainment",
+      //   Rating: "N/A",
+      //   infoPage: "N/A"
+      // },
+      // {
+      //   name: "Miramax movies",
+      //   type: "m3u8",
+      //   streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-661fca34414d94009d1206ec/variant.m3u8?x-plex-token=smLAakyp6S3j3-xV84Vo&x-plex-advertising-identifier=&x-plex-client-identifier=724c6121-eadf-4ae2-8ab0-3026d3c7c164&x-plex-playback-id=p_11bd71fe-d16b-4169-a5cb-6c9337323817&x-plex-playback-session-id=&x-plex-session-id=&x-plex-device=Linux&x-plex-device-name=Plex+Mediaverse&x-plex-advertising-donottrack=1&x-plex-drm=&x-plex-model=&x-plex-platform=Firefox&x-plex-platform-version=134.0&x-plex-product=Plex+Mediaverse&x-plex-device-screen-resolution=&x-plex-device-vendor=&x-plex-version=&x-plex-provider-streaming-start=1759323258&url=c4ba6dc2d30047b6f3655d98c0377b4c-47c0f35a49d7ecb0e598de5af0980bf7997eb3d5b6cb5f0e9e79f80eabe0194c830bfe908809b70b3387d073a2701ab3e2f12342c912fd09e3d8869a398f9e51ae4799e4b318dbdaf2fccca8b638429d815e849bf3b799c909abd34d14e34016daa09ade0c9c9ac17651eb98c2c686426f37d5c592ccaff8ed4db56fe80b114a25918bda83af9a4d3d2f70c0e9bb2b682ac8bef67608b9ce5a836753a06c186ab7a2f48f4b596da2b3c7c9700819ff8c68b58892bfad4ece0846d86d962f304ddc72736196ee7d839959423e3dd3b2a4",
+      //   logo: "https://variety.com/wp-content/uploads/2023/11/TH_Miramax.jpg",
+      //   category: "Movies",
+      //   Rating: "N/A",
+      //   infoPage: "N/A"
+      // },
       {
         name: "Wu Tang collection",
         type: "m3u8",
@@ -486,30 +486,30 @@ const channels = [
       {
         name: "Hollywood classic",
         type: "m3u8",
-        streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-66be944f8711311880995280.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=SHLUc5JKDYes9d_z94Cw",
+        streamUrl: "https://epg.provider.plex.tv/library/parts/5e20b730f2f8d5003d739db7-66be944f8711311880995280.m3u8?includeAllStreams=1&X-Plex-Product=Plex+Mediaverse&X-Plex-Token=i7_NuEVNME_rqwddo3Gg",
         logo: "https://images.plex.tv/photo?size=large-1920&scale=1&url=https%3A%2F%2Fprovider-static.plex.tv%2Fepg%2Fcms%2Fproduction%2F6d941e2d-2852-4b6e-83e0-99a10920ddb3%2FAction_Hollywood_Movies_artwork_horizontal_-_Angela_ChanRDX.jpg",
         category: "Movies",
         Rating: "PG",
         infoPage: "N/A"
       },
-      {
-        name: "Nickelodeon Junior",
-        type: "m3u8",
-        streamUrl: "https://fl1.moveonjoy.com/NICK_JR/index.m3u8",
-        logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhojXucO7YQMjJjynua9IX3BN1AZIFnoNeOqRBN2_9TIaFlMwmbMq6XrWhg5_wIKmAf9PcUxSI2etgz95Pmi12Foqxe4F_ghNctgEhbVflI7n6Lttq6pMdQXNhaf4_ho32HNfy32bV2lURpJfdTuij15RasZ2gqVGC38nMz30XHzBZtcMEGgSpq/s400/nick-jr-logo-2023_3.jpg",
-        category: "Kids",
-        Rating: "PG",
-        infoPage: "N/A"
-      },
-      {
-        name: "Nick toons",
-        type: "m3u8",
-        streamUrl: "https://fl1.moveonjoy.com/NICKTOONS/index.m3u8",
-        logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhojXucO7YQMjJjynua9IX3BN1AZIFnoNeOqRBN2_9TIaFlMwmbMq6XrWhg5_wIKmAf9PcUxSI2etgz95Pmi12Foqxe4F_ghNctgEhbVflI7n6Lttq6pMdQXNhaf4_ho32HNfy32bV2lURpJfdTuij15RasZ2gqVGC38nMz30XHzBZtcMEGgSpq/s400/nick-jr-logo-2023_3.jpg",
-        category: "Kids",
-        Rating: "PG",
-        infoPage: "N/A"
-      },
+      // {
+      //   name: "Nickelodeon Junior",
+      //   type: "m3u8",
+      //   streamUrl: "https://fl1.moveonjoy.com/NICK_JR/index.m3u8",
+      //   logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhojXucO7YQMjJjynua9IX3BN1AZIFnoNeOqRBN2_9TIaFlMwmbMq6XrWhg5_wIKmAf9PcUxSI2etgz95Pmi12Foqxe4F_ghNctgEhbVflI7n6Lttq6pMdQXNhaf4_ho32HNfy32bV2lURpJfdTuij15RasZ2gqVGC38nMz30XHzBZtcMEGgSpq/s400/nick-jr-logo-2023_3.jpg",
+      //   category: "Kids",
+      //   Rating: "PG",
+      //   infoPage: "N/A"
+      // },
+      // {
+      //   name: "Nick toons",
+      //   type: "m3u8",
+      //   streamUrl: "https://fl1.moveonjoy.com/NICKTOONS/index.m3u8",
+      //   logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhojXucO7YQMjJjynua9IX3BN1AZIFnoNeOqRBN2_9TIaFlMwmbMq6XrWhg5_wIKmAf9PcUxSI2etgz95Pmi12Foqxe4F_ghNctgEhbVflI7n6Lttq6pMdQXNhaf4_ho32HNfy32bV2lURpJfdTuij15RasZ2gqVGC38nMz30XHzBZtcMEGgSpq/s400/nick-jr-logo-2023_3.jpg",
+      //   category: "Kids",
+      //   Rating: "PG",
+      //   infoPage: "N/A"
+      // },
       {
         name: "KIDDO+",
         type: "m3u8",
@@ -598,21 +598,21 @@ const channels = [
       {
         name: "Nature time",
         type: "m3u8",
-        streamUrl: "https://shls-live-ak.akamaized.net/out/v1/b06a89a463764d3688cda337d40dc5bf/index.m3u8",
+        streamUrl: "https://amg00090-blueantllc-lovenatureau-samsungnz-r3iaz.amagi.tv/playlist/amg00090-blueantllc-lovenatureau-samsungnz/playlist.m3u8",
         logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-l/76c1f7bf76617738201aa7ad7ca01972.webp",
         category: "Nature",
         Rating: "N/A",
         infoPage: "N/A"
       },
-      {
-        name: "fuse",
-        type: "m3u8",
-        streamUrl: "https://fl1.moveonjoy.com/FUSE/index.m3u8",
-        logo: "https://images.crunchbase.com/image/upload/c_pad,h_160,w_160,f_auto,b_white,q_auto:eco,dpr_1/pwshhr5ddhfvqqk6nu4e?ik-sanitizeSvg=true",
-        category: "Entertainment",
-        Rating: "N/A",
-        infoPage: "N/A"
-      },
+      // {
+      //   name: "fuse",
+      //   type: "m3u8",
+      //   streamUrl: "https://fl1.moveonjoy.com/FUSE/index.m3u8",
+      //   logo: "https://images.crunchbase.com/image/upload/c_pad,h_160,w_160,f_auto,b_white,q_auto:eco,dpr_1/pwshhr5ddhfvqqk6nu4e?ik-sanitizeSvg=true",
+      //   category: "Entertainment",
+      //   Rating: "N/A",
+      //   infoPage: "N/A"
+      // },
       {
         name: "TVJamaica",
         type: "m3u8",
@@ -635,7 +635,7 @@ const channels = [
         name: "Lifetime Movies",
         type: "m3u8",
         streamUrl: "https://fl1.moveonjoy.com/LIFETIME_MOVIE_NETWORK/index.m3u8",
-        logo: "https://static.wikia.nocookie.net/logopedia/images/2/2c/Television_Jamaica_Logo.png/",
+        logo: "https://static.wikia.nocookie.net/logopedia/images/a/a3/Lifetime_2017.svg/revision/latest/scale-to-width-down/1000?cb=20170718213910",
         category: "Entertainment",
         Rating: "N/A",
         infoPage: "N/A"
@@ -644,7 +644,7 @@ const channels = [
         name: "Jewelry TV",
         type: "m3u8",
         streamUrl: "https://content.jwplatform.com/live/broadcast/oe7UD7Ag.m3u8",
-        logo: "https://static.wikia.nocookie.net/logopedia/images/2/2c/Television_Jamaica_Logo.png/",
+        logo: "https://static.wikia.nocookie.net/logopedia/images/0/0d/JTV_2004-alternate.gif/revision/latest?cb=20110904225924",
         category: "Entertainment",
         Rating: "N/A",
         infoPage: "N/A"
@@ -653,20 +653,20 @@ const channels = [
         name: "Monte Carlo",
         type: "m3u8",
         streamUrl: "https://pkg2.frontlayer.net/pseudolive/fl718492/index.m3u8?session=1749100165",
-        logo: "https://static.wikia.nocookie.net/logopedia/images/5/53/LOGO_Monte_Carlo_2017_mayusculas_letra_negra.png/",
+        logo: "https://static.wikia.nocookie.net/logopedia/images/5/53/LOGO_Monte_Carlo_2017_mayusculas_letra_negra.png",
         category: "Lifestyle",
         Rating: "N/A",
         infoPage: "N/A"
       },
-      {
-        name: "Localish TV",
-        type: "m3u8",
-        streamUrl: "https://livetv-fa.tubi.video/localish/index.m3u8",
-        logo: "https://static.wikia.nocookie.net/logopedia/images/3/3e/ERGj07CXkAAn5Xl.jpg",
-        category: "Lifestyle",
-        Rating: "N/A",
-        infoPage: "N/A"
-      },
+      // {
+      //   name: "Localish TV",
+      //   type: "m3u8",
+      //   streamUrl: "https://livetv-fa.tubi.video/localish/index.m3u8",
+      //   logo: "https://static.wikia.nocookie.net/logopedia/images/3/3e/ERGj07CXkAAn5Xl.jpg",
+      //   category: "Lifestyle",
+      //   Rating: "N/A",
+      //   infoPage: "N/A"
+      // },
       {
         name: "Global Fashion TV",
         type: "m3u8",
@@ -685,15 +685,15 @@ const channels = [
         Rating: "N/A",
         infoPage: "N/A"
       },
-      {
-        name: "NitroCircus",
-        type: "m3u8",
-        streamUrl: "https://amg13231-actve-amg13231c1-rakuten-us-5604.playouts.now.amagi.tv/playlist.m3u8",
-        logo: "https://cdn.brandfetch.io/idezrRhd60/w/336/h/336/theme/dark/icon.jpeg?c=1dxbfHSJFAPEGdCLU4o5B",
-        category: "Sports",
-        Rating: "N/A",
-        infoPage: "N/A"
-      },
+      // {
+      //   name: "NitroCircus",
+      //   type: "m3u8",
+      //   streamUrl: "https://amg13231-actve-amg13231c1-rakuten-us-5604.playouts.now.amagi.tv/playlist.m3u8",
+      //   logo: "https://cdn.brandfetch.io/idezrRhd60/w/336/h/336/theme/dark/icon.jpeg?c=1dxbfHSJFAPEGdCLU4o5B",
+      //   category: "Sports",
+      //   Rating: "N/A",
+      //   infoPage: "N/A"
+      // },
       {
         name: "Racer INT",
         type: "m3u8",
@@ -724,21 +724,21 @@ const channels = [
       {
         name: "CMC",
         type: "m3u8",
-        streamUrl: "https://rpn.bozztv.com/inim03/live1/cmctv/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9",
+        streamUrl: "https://cmc-ono.amagi.tv/hls/amagi_hls_data_cmcAAAAAA-cmc-ono/CDN/playlist.m3u8",
         logo: "https://digitaladvertisingmedia.com/wp-content/uploads/2019/12/S_USACMC00000-300x225.jpg",
         category: "Music",
         Rating: "N/A",
         infoPage: "N/A"
       },
-      {
-        name: "DLX",
-        type: "m3u8",
-        streamUrl: "https://sdn-global-live-streaming-packager-cache.3qsdn.com/65183/692d3d16e5cae_13365477_2512010700_2.m3u8",
-        logo: "https://deluxemusic.de/wp-content/uploads/sites/4/2023/01/DLX_RAP_LOGO_RGB-1.png",
-        category: "Music",
-        Rating: "N/A",
-        infoPage: "N/A"
-      },         
+      // {
+      //   name: "DLX",
+      //   type: "m3u8",
+      //   streamUrl: "https://sdn-global-live-streaming-packager-cache.3qsdn.com/65183/692d3d16e5cae_13365477_2512010700_2.m3u8",
+      //   logo: "https://deluxemusic.de/wp-content/uploads/sites/4/2023/01/DLX_RAP_LOGO_RGB-1.png",
+      //   category: "Music",
+      //   Rating: "N/A",
+      //   infoPage: "N/A"
+      // },         
       {
         name: "Itv Afro",
         type: "m3u8",
