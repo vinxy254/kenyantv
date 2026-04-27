@@ -820,7 +820,7 @@
           }
 
           updateChannelInfo(channelData);
-         // handleChannelChange();
+            handleChannelChange();
         });
       });
     }
@@ -930,10 +930,8 @@
       }
     }
 
-    // Update Channel Info in bottom panel
-    function updateChannelInfo(data) {
-      // Implementation remains the same
-    }
+
+    
 
     // Load Generic Stream
     function loadStream(url) {
@@ -1344,7 +1342,7 @@
     // Call this when channel changes
     function handleChannelChange() {
       if(!bannerVisible) {
-        //showBanner();
+        showBanner();
       }
       resetBannerTimer();
     }
