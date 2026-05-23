@@ -267,15 +267,6 @@ const channels = [
         infoPage: "N/A"
       },
        
-      // {
-      //   name: "TVS music",
-      //   type: "m3u8",
-      //   streamUrl: "https://rpn.bozztv.com/gusa/gusa-tvsmusic/index.m3u8",
-      //   logo: "https://5.imimg.com/data5/SELLER/Default/2021/7/FS/OR/YA/89210578/music-tv-channel-broadcast-solutions.jpg",
-      //   category: "Music",
-      //   Rating: "GE",
-      //   infoPage: "N/A"
-      // }, 
       {
         name: "BeIN sports xtra",
         type: "m3u8",
